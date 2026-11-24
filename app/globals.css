@@ -1,26 +1,132 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-void: #050506;
+  --bg-surface: #0d0b0a;
+  --bg-elevated: #161210;
+  --bg-glass: rgba(13, 11, 10, 0.76);
+  --accent-primary: #ff4d00;
+  --accent-hover: #ff6a1a;
+  --accent-amber: #ffa23a;
+  --accent-core: #ffe4a3;
+  --accent-crimson: #9e1f00;
+  --text-primary: #f5f2ee;
+  --text-secondary: #b8ada5;
+  --text-muted: #877b73;
+  --border-subtle: rgba(255, 255, 255, 0.09);
+  --border-ember: rgba(255, 77, 0, 0.38);
+  --status-success: #22c55e;
+  --status-warning: #f59e0b;
+  --status-danger: #ef4444;
+  --glow-ember-sm: 0 0 24px -4px rgba(255, 77, 0, 0.5);
+  --glow-ember-lg: 0 0 80px -12px rgba(255, 77, 0, 0.35),
+    0 0 140px -20px rgba(158, 31, 0, 0.25);
+  --shadow-card: 0 20px 50px -20px rgba(0, 0, 0, 0.85),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-void: #050506;
+  --color-surface: #0d0b0a;
+  --color-elevated: #161210;
+  --color-ember: #ff4d00;
+  --color-ember-glow: #ff6a1a;
+  --color-amber: #ffa23a;
+  --color-solar-core: #ffe4a3;
+  --color-crimson: #9e1f00;
+  --color-ink-primary: #f5f2ee;
+  --color-ink-secondary: #b8ada5;
+  --color-ink-muted: #877b73;
+
+  --font-display: var(--font-oswald), sans-serif;
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-jakarta), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  background-color: var(--bg-void);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-void);
+  color: var(--text-primary);
+  font-family: var(--font-jakarta), system-ui, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: rgba(255, 77, 0, 0.35);
+  color: #f5f2ee;
+}
+
+/* Custom obsidian scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050506;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #231c18;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 77, 0, 0.65);
+}
+
+/* Utility classes for Solar Eclipse Obsidian motif */
+.obsidian-card {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+}
+
+.ember-glow-sm {
+  box-shadow: var(--glow-ember-sm);
+}
+
+.ember-glow-lg {
+  box-shadow: var(--glow-ember-lg);
+}
+
+.vertical-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
+@keyframes eclipse-pulse {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.98;
+    transform: scale(1.03);
+  }
+}
+
+.animate-eclipse-pulse {
+  animation: eclipse-pulse 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-eclipse-pulse {
+    animation: none;
+  }
 }
