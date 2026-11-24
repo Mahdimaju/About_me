@@ -6,7 +6,7 @@ import { isAdminAuthenticated } from "@/lib/auth";
 import { AdminDashboard } from "@/components/admin/AdminDashboard";
 
 export const metadata: Metadata = {
-  title: "Admin Proyek — Mahdi Portfolio",
+  title: "Admin Proyek | Mahdi Portfolio",
   robots: { index: false, follow: false },
 };
 

@@ -104,39 +104,39 @@ export function AdminAuthModal({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
           onClick={onClose}
-          className="fixed inset-0 z-[85] flex items-center justify-center bg-void/85 backdrop-blur-lg p-4"
+          className="fixed inset-0 z-[85] flex items-center justify-center bg-void/85 backdrop-blur-sm p-4"
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 12 }}
+            initial={{ opacity: 0, scale: 0.96, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 12 }}
-            transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+            exit={{ opacity: 0, scale: 0.96, y: 10 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
             onClick={(e) => e.stopPropagation()}
-            className="relative w-full max-w-[420px] rounded-2xl border border-ember/30 bg-surface p-7 shadow-[0_28px_80px_-20px_rgba(0,0,0,0.95)]"
+            className="relative w-full max-w-[420px] rounded-2xl border border-white/12 bg-surface p-7 shadow-2xl"
           >
             <button
               type="button"
               onClick={onClose}
               aria-label="Tutup modal admin"
-              className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full border border-white/10 text-ink-muted hover:border-ember/50 hover:text-ink-primary transition-colors"
+              className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-lg border border-white/12 text-ink-muted hover:border-ember/50 hover:text-ink-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember"
             >
-              <X className="h-4 w-4" />
+              <X aria-hidden="true" className="h-4 w-4" />
             </button>
 
             {isAdmin ? (
               <div className="text-center">
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-[#22C55E]/40 bg-[#22C55E]/15 text-[#22C55E]">
-                  <ShieldCheck className="h-6 w-6" />
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl border border-[#22C55E]/40 bg-[#22C55E]/12 text-[#22C55E]">
+                  <ShieldCheck aria-hidden="true" className="h-6 w-6" />
                 </div>
                 <h3
                   id="admin-auth-title"
-                  className="mt-4 font-display text-2xl font-bold uppercase tracking-[0.04em] text-ink-primary"
+                  className="mt-4 font-display text-2xl font-bold uppercase tracking-[0.03em] text-ink-primary"
                 >
                   MODE ADMIN AKTIF
                 </h3>
                 <p className="mt-2 text-xs leading-relaxed text-ink-secondary">
-                  Sesi admin Anda terverifikasi lewat HTTP-only cookie. Anda
-                  dapat langsung mengelola proyek dari halaman utama atau portal{" "}
+                  Sesi admin Anda terverifikasi lewat HTTP-only cookie. Kelola
+                  proyek langsung di halaman utama atau melalui portal{" "}
                   <code className="font-mono text-ember">/admin</code>.
                 </p>
 
@@ -147,16 +147,16 @@ export function AdminAuthModal({
                       onClose();
                       onAddProject();
                     }}
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-ember px-5 py-3 font-display text-sm font-bold uppercase tracking-[0.1em] text-white shadow-[0_0_24px_-4px_rgba(255,77,0,0.55)] hover:bg-ember-glow transition-all"
+                    className="inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-ember px-5 py-3 font-display text-sm font-bold uppercase tracking-[0.08em] text-white hover:bg-ember-glow transition-colors"
                   >
-                    <Plus className="h-4 w-4" />
+                    <Plus aria-hidden="true" className="h-4 w-4" />
                     <span>TAMBAH PROYEK BARU</span>
                   </button>
 
                   <Link
                     href="/admin"
                     onClick={onClose}
-                    className="inline-flex w-full items-center justify-center rounded-full border border-white/12 bg-elevated px-5 py-2.5 text-xs font-semibold text-ink-primary hover:border-ember/50 transition-colors"
+                    className="inline-flex min-h-[44px] w-full items-center justify-center rounded-lg border border-white/12 bg-elevated px-5 py-2.5 text-xs font-semibold text-ink-primary hover:border-ember/50 transition-colors"
                   >
                     Buka Portal /admin
                   </Link>
@@ -167,22 +167,22 @@ export function AdminAuthModal({
                       onLogout();
                       onClose();
                     }}
-                    className="inline-flex w-full items-center justify-center gap-1.5 rounded-full border border-[#EF4444]/35 bg-[#EF4444]/10 px-5 py-2.5 text-xs font-semibold text-[#EF4444] hover:bg-[#EF4444]/20 transition-colors"
+                    className="inline-flex min-h-[44px] w-full items-center justify-center gap-1.5 rounded-lg border border-[#EF4444]/35 bg-[#EF4444]/10 px-5 py-2.5 text-xs font-semibold text-[#EF4444] hover:bg-[#EF4444]/20 transition-colors"
                   >
-                    <LogOut className="h-3.5 w-3.5" />
+                    <LogOut aria-hidden="true" className="h-3.5 w-3.5" />
                     <span>Keluar Mode Admin</span>
                   </button>
                 </div>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="text-center">
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-ember/40 bg-ember/15 text-amber shadow-[0_0_24px_-6px_rgba(255,77,0,0.6)]">
-                  <Lock className="h-5 w-5" />
+                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl border border-ember/40 bg-ember/12 text-amber">
+                  <Lock aria-hidden="true" className="h-5 w-5" />
                 </div>
 
                 <h3
                   id="admin-auth-title"
-                  className="mt-4 font-display text-2xl font-bold uppercase tracking-[0.04em] text-ink-primary"
+                  className="mt-4 font-display text-2xl font-bold uppercase tracking-[0.03em] text-ink-primary"
                 >
                   AUTENTIKASI MODE ADMIN
                 </h3>
@@ -195,10 +195,13 @@ export function AdminAuthModal({
                 </p>
 
                 <div className="mt-6 text-left">
-                  <label htmlFor="admin-passcode-input" className="sr-only">
+                  <label
+                    htmlFor="admin-passcode-input"
+                    className="block font-mono text-[11px] uppercase tracking-[0.12em] text-ink-muted"
+                  >
                     Passcode Admin
                   </label>
-                  <div className="relative">
+                  <div className="relative mt-1.5">
                     <input
                       id="admin-passcode-input"
                       type={showPasscode ? "text" : "password"}
@@ -208,11 +211,11 @@ export function AdminAuthModal({
                         if (error) setError(null);
                       }}
                       autoFocus
-                      placeholder="Masukkan ADMIN_PASSCODE..."
-                      className={`w-full rounded-xl border bg-elevated pl-4 pr-16 py-3 text-sm text-ink-primary placeholder:text-ink-muted outline-none transition-all ${
+                      placeholder="Masukkan passcode admin"
+                      className={`w-full rounded-lg border bg-elevated pl-4 pr-16 py-3 text-sm text-ink-primary placeholder:text-ink-muted outline-none transition-colors ${
                         error
                           ? "border-[#EF4444] focus:ring-2 focus:ring-[#EF4444]/25"
-                          : "border-ember/45 focus:border-ember focus:ring-2 focus:ring-ember/25"
+                          : "border-white/15 focus:border-ember focus:ring-2 focus:ring-ember/25"
                       }`}
                     />
                     <button
@@ -221,16 +224,16 @@ export function AdminAuthModal({
                       aria-label={
                         showPasscode ? "Sembunyikan passcode" : "Tampilkan passcode"
                       }
-                      className="absolute right-3 top-1/2 -translate-y-1/2 inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.12em] text-ink-muted hover:text-ink-primary"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.1em] text-ink-muted hover:text-ink-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember rounded"
                     >
                       {showPasscode ? (
                         <>
-                          <EyeOff className="h-3.5 w-3.5" />
+                          <EyeOff aria-hidden="true" className="h-3.5 w-3.5" />
                           <span>HIDE</span>
                         </>
                       ) : (
                         <>
-                          <Eye className="h-3.5 w-3.5" />
+                          <Eye aria-hidden="true" className="h-3.5 w-3.5" />
                           <span>SHOW</span>
                         </>
                       )}
@@ -244,9 +247,11 @@ export function AdminAuthModal({
                 <button
                   type="submit"
                   disabled={loading}
-                  className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ember px-6 py-3 font-display text-sm font-bold uppercase tracking-[0.12em] text-white shadow-[0_0_24px_-4px_rgba(255,77,0,0.55)] transition-all hover:bg-ember-glow disabled:opacity-55"
+                  className="mt-5 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-ember px-6 py-3 font-display text-sm font-bold uppercase tracking-[0.1em] text-white transition-colors hover:bg-ember-glow disabled:opacity-55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber"
                 >
-                  {loading && <Loader2 className="h-4 w-4 animate-spin" />}
+                  {loading && (
+                    <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" />
+                  )}
                   <span>{loading ? "MEMVERIFIKASI..." : "MASUK MODE ADMIN"}</span>
                 </button>
               </form>

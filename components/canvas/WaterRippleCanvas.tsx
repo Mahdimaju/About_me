@@ -115,6 +115,8 @@ function compileShader(
 interface WaterRippleCanvasProps {
   imageSrc: string;
   alt: string;
+  width: number;
+  height: number;
   className?: string;
   imageClassName?: string;
   focalPoint?: [number, number];
@@ -124,12 +126,15 @@ interface WaterRippleCanvasProps {
   listenTarget?: "self" | "window";
   /** Mount WebGL only on hover (saves WebGL contexts for project card grids) */
   activateOnHover?: boolean;
-  priority?: boolean;
+  fetchPriority?: "high" | "auto" | "low";
+  paused?: boolean;
 }
 
 export function WaterRippleCanvas({
   imageSrc,
   alt,
+  width,
+  height,
   className = "",
   imageClassName = "",
   focalPoint = [0.5, 0.5],
@@ -137,6 +142,8 @@ export function WaterRippleCanvas({
   causticIntensity = 0.24,
   listenTarget = "self",
   activateOnHover = false,
+  fetchPriority = "auto",
+  paused = false,
 }: WaterRippleCanvasProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -147,7 +154,11 @@ export function WaterRippleCanvas({
   const [isVisible, setIsVisible] = useState(true);
 
   const shouldRunWebGL =
-    !reducedMotion && webglSupported && isVisible && (!activateOnHover || isHovered);
+    !paused &&
+    !reducedMotion &&
+    webglSupported &&
+    isVisible &&
+    (!activateOnHover || isHovered);
 
   // Observe visibility to pause animation loop offscreen
   useEffect(() => {
@@ -408,6 +419,11 @@ export function WaterRippleCanvas({
       <img
         src={imageSrc}
         alt={alt}
+        width={width}
+        height={height}
+        loading={fetchPriority === "high" ? "eager" : "lazy"}
+        fetchPriority={fetchPriority}
+        decoding={fetchPriority === "high" ? "sync" : "async"}
         style={{ objectPosition: objectPositionStyle }}
         className={`h-full w-full object-cover select-none ${imageClassName}`}
       />

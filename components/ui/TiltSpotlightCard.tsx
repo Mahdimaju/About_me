@@ -8,7 +8,6 @@ interface TiltSpotlightCardProps {
   className?: string;
   maxTilt?: number;
   enableTilt?: boolean;
-  onClick?: () => void;
 }
 
 export function TiltSpotlightCard({
@@ -16,7 +15,6 @@ export function TiltSpotlightCard({
   className = "",
   maxTilt = 5,
   enableTilt = true,
-  onClick,
 }: TiltSpotlightCardProps) {
   const cardRef = useRef<HTMLDivElement | null>(null);
   const reducedMotion = usePrefersReducedMotion();
@@ -53,7 +51,6 @@ export function TiltSpotlightCard({
   return (
     <div
       ref={cardRef}
-      onClick={onClick}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{

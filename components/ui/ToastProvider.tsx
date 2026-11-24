@@ -94,18 +94,23 @@ export function ToastProvider({ children }: { children: ReactNode }) {
                 initial={{ opacity: 0, y: 16, scale: 0.96 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 10, scale: 0.96 }}
-                transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
-                className="pointer-events-auto relative overflow-hidden rounded-xl bg-surface/95 backdrop-blur-xl border border-white/10 shadow-2xl pl-4 pr-3 py-3.5 flex items-start gap-3"
+                transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                className="pointer-events-auto relative overflow-hidden rounded-xl bg-surface border border-white/12 shadow-2xl pl-4 pr-3 py-3.5 flex items-start gap-3"
               >
+                {/* Left stripe carries explicit semantic state: success / info / error */}
                 <span
                   aria-hidden="true"
                   className={`absolute left-0 top-0 bottom-0 w-1 ${style.bar}`}
                 />
                 <span className={`mt-0.5 shrink-0 ${style.iconBg}`}>
-                  {toast.variant === "success" && <Check className="w-4 h-4" />}
-                  {toast.variant === "info" && <Info className="w-4 h-4" />}
+                  {toast.variant === "success" && (
+                    <Check aria-hidden="true" className="w-4 h-4" />
+                  )}
+                  {toast.variant === "info" && (
+                    <Info aria-hidden="true" className="w-4 h-4" />
+                  )}
                   {toast.variant === "error" && (
-                    <AlertCircle className="w-4 h-4" />
+                    <AlertCircle aria-hidden="true" className="w-4 h-4" />
                   )}
                 </span>
                 <div className="min-w-0 flex-1">
@@ -122,9 +127,9 @@ export function ToastProvider({ children }: { children: ReactNode }) {
                   type="button"
                   onClick={() => dismiss(toast.id)}
                   aria-label="Tutup notifikasi"
-                  className="shrink-0 rounded-md p-1 text-ink-muted hover:text-ink-primary transition-colors"
+                  className="shrink-0 rounded-md p-1.5 text-ink-muted hover:text-ink-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember"
                 >
-                  <X className="w-3.5 h-3.5" />
+                  <X aria-hidden="true" className="w-3.5 h-3.5" />
                 </button>
               </motion.div>
             );

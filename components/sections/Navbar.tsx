@@ -69,20 +69,21 @@ export function Navbar({ isAdmin, onOpenAdmin }: NavbarProps) {
 
   return (
     <>
+      {/* Glass Dose #1: sticky navbar separates floating navigation from scrolling content */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "h-16 bg-surface/80 backdrop-blur-xl border-b border-white/[0.08] shadow-[0_12px_36px_-16px_rgba(0,0,0,0.9)]"
-            : "h-[76px] bg-gradient-to-b from-void/85 via-void/40 to-transparent"
+            ? "h-16 bg-surface/85 backdrop-blur-md border-b border-white/[0.09] shadow-[0_10px_30px_-14px_rgba(0,0,0,0.85)]"
+            : "h-[76px] bg-gradient-to-b from-void/85 via-void/35 to-transparent"
         }`}
       >
         <div className="mx-auto flex h-full max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
           {/* Logo Monogram */}
           <a
             href="#hero"
-            className="group flex items-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember rounded-lg"
+            className="group flex items-center gap-3 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember"
           >
-            <span className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-ember/60 bg-surface font-serif text-lg font-bold text-ink-primary shadow-[0_0_16px_-4px_rgba(255,77,0,0.45)] transition-colors group-hover:border-ember group-hover:text-ember">
+            <span className="relative flex h-9 w-9 items-center justify-center rounded-lg border border-ember/60 bg-surface font-serif text-lg font-bold text-ink-primary transition-colors group-hover:border-ember group-hover:text-ember">
               {profile.monogram}
               <span
                 aria-hidden="true"
@@ -93,7 +94,7 @@ export function Navbar({ isAdmin, onOpenAdmin }: NavbarProps) {
               <span className="font-display text-base font-bold tracking-[0.14em] text-ink-primary">
                 {profile.shortName}
               </span>
-              <span className="mt-0.5 font-mono text-[9px] tracking-[0.2em] text-ember">
+              <span className="mt-0.5 font-mono text-[9px] tracking-[0.18em] text-ink-muted">
                 {profile.brandSub}
               </span>
             </span>
@@ -110,7 +111,8 @@ export function Navbar({ isAdmin, onOpenAdmin }: NavbarProps) {
                 <a
                   key={item.id}
                   href={`#${item.id}`}
-                  className={`relative py-2 font-serif text-[15px] font-semibold tracking-[0.14em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember rounded-sm ${
+                  aria-current={isActive ? "location" : undefined}
+                  className={`relative py-2 font-serif text-[15px] font-semibold tracking-[0.12em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember rounded-sm ${
                     isActive
                       ? "text-ember"
                       : "text-ink-secondary hover:text-ink-primary"
@@ -123,9 +125,9 @@ export function Navbar({ isAdmin, onOpenAdmin }: NavbarProps) {
                       transition={{
                         type: "spring",
                         stiffness: 420,
-                        damping: 32,
+                        damping: 34,
                       }}
-                      className="absolute left-0 right-0 -bottom-0.5 h-[2px] rounded-full bg-ember shadow-[0_0_10px_#FF4D00]"
+                      className="absolute left-0 right-0 -bottom-0.5 h-[2px] bg-ember"
                     />
                   )}
                 </a>
@@ -137,50 +139,54 @@ export function Navbar({ isAdmin, onOpenAdmin }: NavbarProps) {
           <div className="hidden md:flex items-center gap-2.5">
             <a
               href="#contact"
-              className="group inline-flex items-center gap-2.5 rounded-full border border-ember/45 bg-[#120C09]/90 px-5 py-2 font-serif text-[13px] font-semibold tracking-[0.16em] text-ink-primary transition-all hover:border-ember hover:bg-ember/10 hover:shadow-[0_0_20px_-4px_rgba(255,77,0,0.45)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber"
+              className="inline-flex items-center justify-center rounded-lg border border-ember/50 bg-surface px-4 py-2 font-serif text-[13px] font-semibold tracking-[0.14em] text-ink-primary transition-colors hover:border-ember hover:bg-ember/12 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber"
             >
-              <span>HUBUNGI SAYA</span>
-              <span
-                aria-hidden="true"
-                className="h-2 w-2 rounded-full bg-ember shadow-[0_0_10px_#FF4D00] transition-transform group-hover:scale-125"
-              />
+              HUBUNGI SAYA
             </a>
 
             <button
               type="button"
               onClick={onOpenAdmin}
-              aria-label={isAdmin ? "Panel Mode Admin Aktif" : "Masuk Mode Admin (Ctrl+Shift+A)"}
-              title={isAdmin ? "Mode Admin Aktif (Klik untuk kelola / keluar)" : "Mode Admin (Ctrl+Shift+A)"}
-              className={`flex h-9 w-9 items-center justify-center rounded-full border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember ${
+              aria-label={
                 isAdmin
-                  ? "border-[#22C55E]/50 bg-[#22C55E]/10 text-[#22C55E] shadow-[0_0_16px_-4px_rgba(34,197,94,0.5)]"
-                  : "border-white/10 bg-surface/70 text-ink-muted hover:border-ember/50 hover:text-ember"
+                  ? "Panel Mode Admin Aktif"
+                  : "Masuk Mode Admin (Ctrl+Shift+A)"
+              }
+              title={
+                isAdmin
+                  ? "Mode Admin Aktif (Klik untuk kelola atau keluar)"
+                  : "Mode Admin (Ctrl+Shift+A)"
+              }
+              className={`flex h-10 w-10 items-center justify-center rounded-lg border transition-colors active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember ${
+                isAdmin
+                  ? "border-[#22C55E]/55 bg-[#22C55E]/12 text-[#22C55E]"
+                  : "border-white/12 bg-surface text-ink-muted hover:border-ember/50 hover:text-ink-primary"
               }`}
             >
               {isAdmin ? (
-                <ShieldCheck className="h-4 w-4" />
+                <ShieldCheck aria-hidden="true" className="h-4 w-4" />
               ) : (
-                <Lock className="h-4 w-4" />
+                <Lock aria-hidden="true" className="h-4 w-4" />
               )}
             </button>
           </div>
 
-          {/* Mobile Hamburger */}
+          {/* Mobile Controls (min 44x44px tap target per R-03) */}
           <div className="flex md:hidden items-center gap-2">
             <button
               type="button"
               onClick={onOpenAdmin}
-              aria-label="Mode Admin"
-              className={`flex h-11 w-11 items-center justify-center rounded-xl border transition-colors ${
+              aria-label={isAdmin ? "Mode Admin Aktif" : "Masuk Mode Admin"}
+              className={`flex h-11 w-11 items-center justify-center rounded-lg border transition-colors ${
                 isAdmin
-                  ? "border-[#22C55E]/50 bg-[#22C55E]/10 text-[#22C55E]"
-                  : "border-white/10 bg-surface/80 text-ink-muted"
+                  ? "border-[#22C55E]/55 bg-[#22C55E]/12 text-[#22C55E]"
+                  : "border-white/12 bg-surface text-ink-muted"
               }`}
             >
               {isAdmin ? (
-                <ShieldCheck className="h-4 w-4" />
+                <ShieldCheck aria-hidden="true" className="h-4 w-4" />
               ) : (
-                <Lock className="h-4 w-4" />
+                <Lock aria-hidden="true" className="h-4 w-4" />
               )}
             </button>
             <button
@@ -188,15 +194,15 @@ export function Navbar({ isAdmin, onOpenAdmin }: NavbarProps) {
               onClick={() => setMobileOpen(true)}
               aria-label="Buka menu navigasi"
               aria-expanded={mobileOpen}
-              className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/12 bg-surface/85 text-ink-primary hover:border-ember/50 transition-colors"
+              className="flex h-11 w-11 items-center justify-center rounded-lg border border-white/12 bg-surface text-ink-primary hover:border-ember/50 transition-colors"
             >
-              <Menu className="h-5 w-5" />
+              <Menu aria-hidden="true" className="h-5 w-5" />
             </button>
           </div>
         </div>
       </header>
 
-      {/* Mobile Navigation Drawer */}
+      {/* Mobile Navigation Drawer (matte solid surface, zero glass stack) */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -204,43 +210,41 @@ export function Navbar({ isAdmin, onOpenAdmin }: NavbarProps) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-[70] bg-void/80 backdrop-blur-md md:hidden"
+            className="fixed inset-0 z-[70] bg-void/85 md:hidden"
             onClick={() => setMobileOpen(false)}
           >
             <motion.aside
+              aria-label="Menu Navigasi Mobile"
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
-              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
-              className="ml-auto flex h-full w-[min(82vw,320px)] flex-col border-l border-white/10 bg-surface/95 backdrop-blur-xl p-6"
+              className="ml-auto flex h-full w-[min(82vw,320px)] flex-col border-l border-white/12 bg-surface p-6 shadow-2xl"
             >
-              <div className="flex items-center justify-between pb-6 border-b border-white/[0.08]">
+              <div className="flex items-center justify-between pb-5 border-b border-white/[0.08]">
                 <span className="font-display text-lg font-bold tracking-[0.14em] text-ink-primary">
                   NAVIGASI
                 </span>
                 <button
                   type="button"
                   onClick={() => setMobileOpen(false)}
-                  aria-label="Tutup menu"
-                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-ink-secondary hover:text-ink-primary"
+                  aria-label="Tutup menu navigasi"
+                  className="flex h-11 w-11 items-center justify-center rounded-lg border border-white/12 text-ink-secondary hover:text-ink-primary"
                 >
-                  <X className="h-5 w-5" />
+                  <X aria-hidden="true" className="h-5 w-5" />
                 </button>
               </div>
 
-              <nav className="mt-6 flex flex-col gap-2">
+              <nav className="mt-6 flex flex-col gap-1.5">
                 {NAV_ITEMS.map((item, idx) => {
                   const isActive = activeSection === item.id;
                   return (
-                    <motion.a
+                    <a
                       key={item.id}
                       href={`#${item.id}`}
-                      initial={{ opacity: 0, x: 18 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.05 * idx, duration: 0.25 }}
                       onClick={() => setMobileOpen(false)}
-                      className={`flex items-center justify-between rounded-xl px-4 py-3.5 font-serif text-base font-semibold tracking-[0.14em] transition-colors ${
+                      className={`flex min-h-[44px] items-center justify-between rounded-lg px-4 py-3 font-serif text-base font-semibold tracking-[0.12em] transition-colors ${
                         isActive
                           ? "bg-ember/15 text-ember border border-ember/35"
                           : "text-ink-secondary hover:bg-elevated hover:text-ink-primary"
@@ -250,7 +254,7 @@ export function Navbar({ isAdmin, onOpenAdmin }: NavbarProps) {
                       <span className="font-mono text-[11px] text-ink-muted">
                         0{idx + 1}
                       </span>
-                    </motion.a>
+                    </a>
                   );
                 })}
               </nav>
@@ -259,9 +263,9 @@ export function Navbar({ isAdmin, onOpenAdmin }: NavbarProps) {
                 <a
                   href="#contact"
                   onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center gap-2 rounded-full bg-ember px-5 py-3 font-display text-sm font-bold tracking-[0.12em] text-white shadow-[0_0_24px_-4px_rgba(255,77,0,0.5)]"
+                  className="flex min-h-[44px] items-center justify-center rounded-lg bg-ember px-5 py-3 font-display text-sm font-bold tracking-[0.12em] text-white transition-colors hover:bg-ember-glow"
                 >
-                  <span>HUBUNGI SAYA</span>
+                  HUBUNGI SAYA
                 </a>
                 <button
                   type="button"
@@ -269,9 +273,9 @@ export function Navbar({ isAdmin, onOpenAdmin }: NavbarProps) {
                     setMobileOpen(false);
                     onOpenAdmin();
                   }}
-                  className="flex items-center justify-center gap-2 rounded-full border border-white/12 bg-elevated px-5 py-2.5 text-xs font-medium text-ink-secondary hover:border-ember/50 hover:text-ink-primary"
+                  className="flex min-h-[44px] items-center justify-center gap-2 rounded-lg border border-white/12 bg-elevated px-5 py-2.5 text-xs font-medium text-ink-secondary hover:border-ember/50 hover:text-ink-primary"
                 >
-                  <Lock className="h-3.5 w-3.5 text-ember" />
+                  <Lock aria-hidden="true" className="h-3.5 w-3.5 text-ember" />
                   <span>{isAdmin ? "Mode Admin Aktif" : "Masuk Mode Admin"}</span>
                 </button>
               </div>

@@ -14,16 +14,10 @@ const QUICK_LINKS = [
 
 export function Footer() {
   return (
-    <footer className="relative mt-auto bg-void">
-      {/* Thin ember-faded top divider */}
-      <div
-        aria-hidden="true"
-        className="h-[1px] w-full bg-gradient-to-r from-transparent via-ember/45 to-transparent"
-      />
-
+    <footer className="relative mt-auto border-t border-white/[0.08] bg-void">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12 py-8 flex flex-col md:flex-row items-center justify-between gap-5">
         <p className="text-center md:text-left font-mono text-xs text-ink-muted">
-          &copy; 2026 {profile.fullName} &mdash; Solar Eclipse Obsidian Portfolio
+          &copy; 2026 {profile.fullName} | Solar Eclipse Obsidian Portfolio
           (Next.js 16 + Three.js)
         </p>
 
@@ -35,14 +29,14 @@ export function Footer() {
             <a
               key={item.href}
               href={item.href}
-              className="font-serif text-xs font-semibold tracking-[0.14em] text-ink-muted hover:text-ember transition-colors"
+              className="font-serif text-xs font-semibold tracking-[0.12em] text-ink-muted hover:text-ember transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember rounded-sm"
             >
               {item.label}
             </a>
           ))}
           <Link
             href="/admin"
-            className="font-mono text-[11px] text-ink-muted/70 hover:text-ember transition-colors"
+            className="font-mono text-[11px] text-ink-muted hover:text-ember transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember rounded-sm"
           >
             /admin
           </Link>
@@ -50,10 +44,10 @@ export function Footer() {
 
         <a
           href="#hero"
-          className="inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-surface px-4 py-2 font-mono text-[11px] text-ink-secondary transition-colors hover:border-ember/50 hover:text-ink-primary"
+          className="inline-flex min-h-[40px] items-center gap-1.5 rounded-lg border border-white/12 bg-surface px-4 py-2 font-mono text-[11px] text-ink-secondary transition-colors hover:border-ember/50 hover:text-ink-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember"
         >
           <span>Kembali ke Atas</span>
-          <ArrowUp className="h-3.5 w-3.5 text-ember" />
+          <ArrowUp aria-hidden="true" className="h-3.5 w-3.5 text-ember" />
         </a>
       </div>
     </footer>

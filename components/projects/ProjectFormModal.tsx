@@ -10,11 +10,9 @@ import {
 } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import {
-  ArrowUpRight,
   ImagePlus,
   Link2,
   Loader2,
-  Star,
   Upload,
   X,
 } from "lucide-react";
@@ -213,7 +211,7 @@ function ProjectFormDialogContent({
       showToast({
         title: isEdit ? "Proyek berhasil diperbarui!" : "Proyek berhasil disimpan!",
         description:
-          "Data tersimpan ke projects.json & langsung tampil di Showcase.",
+          "Data tersimpan ke projects.json dan langsung tampil di Showcase.",
         variant: "success",
       });
     } catch {
@@ -225,10 +223,10 @@ function ProjectFormDialogContent({
 
   const previewProject: Project = {
     id: editingProject?.id || "preview-live",
-    title: title.trim() || "Solar Eclipse 3D Portfolio",
+    title: title.trim() || "Judul Proyek Anda",
     summary:
       summary.trim() ||
-      "Ringkasan singkat proyek Anda akan tampil secara real-time pada kartu ini.",
+      "Ringkasan singkat proyek Anda akan tampil secara langsung pada kartu ini.",
     description: description.trim() || summary.trim(),
     category,
     techStack: techStack.length > 0 ? techStack : ["Next.js", "TypeScript"],
@@ -252,26 +250,26 @@ function ProjectFormDialogContent({
       exit={{ opacity: 0 }}
       transition={{ duration: 0.2 }}
       onClick={onClose}
-      className="fixed inset-0 z-[85] flex items-center justify-center bg-void/85 backdrop-blur-lg p-3 sm:p-5 overflow-y-auto"
+      className="fixed inset-0 z-[85] flex items-center justify-center bg-void/85 backdrop-blur-sm p-3 sm:p-5 overflow-y-auto"
     >
       <motion.div
-        initial={{ opacity: 0, scale: 0.96, y: 14 }}
+        initial={{ opacity: 0, scale: 0.97, y: 12 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.96, y: 14 }}
-        transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}
+        exit={{ opacity: 0, scale: 0.97, y: 12 }}
+        transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
         onClick={(e) => e.stopPropagation()}
-        className="relative my-auto w-full max-w-5xl max-h-[92vh] flex flex-col overflow-hidden rounded-2xl border border-ember/30 bg-surface shadow-[0_32px_90px_-24px_rgba(0,0,0,0.95)]"
+        className="relative my-auto w-full max-w-5xl max-h-[92vh] flex flex-col overflow-hidden rounded-2xl border border-white/12 bg-surface shadow-2xl"
       >
         {/* Modal Header */}
         <div className="flex items-center justify-between gap-4 border-b border-white/[0.08] px-6 py-4">
           <div className="flex flex-wrap items-center gap-3">
             <h3
               id="project-form-title"
-              className="font-display text-xl sm:text-2xl font-bold uppercase tracking-[0.04em] text-ink-primary"
+              className="font-display text-xl sm:text-2xl font-bold uppercase tracking-[0.03em] text-ink-primary"
             >
               {isEdit ? "EDIT PROYEK" : "TAMBAH PROYEK BARU"}
             </h3>
-            <span className="rounded-full border border-ember/40 bg-ember/10 px-2.5 py-0.5 font-mono text-[10px] text-ember-glow">
+            <span className="rounded-md border border-white/12 bg-elevated px-2.5 py-0.5 font-mono text-[10px] text-ink-secondary">
               {isEdit ? "PATCH /api/projects/[id]" : "POST /api/projects"}
             </span>
           </div>
@@ -280,9 +278,9 @@ function ProjectFormDialogContent({
             type="button"
             onClick={onClose}
             aria-label="Tutup formulir proyek"
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/12 text-ink-secondary hover:border-ember hover:text-ink-primary transition-colors"
+            className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/12 text-ink-secondary hover:border-ember hover:text-ink-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember"
           >
-            <X className="h-4 w-4" />
+            <X aria-hidden="true" className="h-4 w-4" />
           </button>
         </div>
 
@@ -291,7 +289,7 @@ function ProjectFormDialogContent({
           <button
             type="button"
             onClick={() => setMobileTab("form")}
-            className={`flex-1 rounded-xl py-2 text-xs font-semibold transition-colors ${
+            className={`min-h-[40px] flex-1 rounded-lg py-2 text-xs font-semibold transition-colors ${
               mobileTab === "form"
                 ? "bg-ember text-white"
                 : "text-ink-secondary hover:text-ink-primary"
@@ -302,7 +300,7 @@ function ProjectFormDialogContent({
           <button
             type="button"
             onClick={() => setMobileTab("preview")}
-            className={`flex-1 rounded-xl py-2 text-xs font-semibold transition-colors ${
+            className={`min-h-[40px] flex-1 rounded-lg py-2 text-xs font-semibold transition-colors ${
               mobileTab === "preview"
                 ? "bg-ember text-white"
                 : "text-ink-secondary hover:text-ink-primary"
@@ -324,7 +322,10 @@ function ProjectFormDialogContent({
             }`}
           >
             {formError && (
-              <div className="rounded-xl border border-[#EF4444]/40 bg-[#EF4444]/10 px-4 py-3 text-xs text-[#FCA5A5]">
+              <div
+                role="alert"
+                className="rounded-lg border border-[#EF4444]/40 bg-[#EF4444]/10 px-4 py-3 text-xs text-[#FCA5A5]"
+              >
                 {formError}
               </div>
             )}
@@ -334,7 +335,7 @@ function ProjectFormDialogContent({
               <div className="flex items-center justify-between">
                 <label
                   htmlFor="proj-title"
-                  className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-muted"
+                  className="font-mono text-[11px] uppercase tracking-[0.1em] text-ink-muted"
                 >
                   JUDUL PROYEK <span className="text-ember">*</span>
                 </label>
@@ -349,8 +350,8 @@ function ProjectFormDialogContent({
                 required
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="Solar Eclipse 3D Portfolio"
-                className="mt-1.5 w-full rounded-xl border border-white/12 bg-elevated px-3.5 py-2.5 text-sm text-ink-primary placeholder:text-ink-muted outline-none focus:border-ember focus:ring-2 focus:ring-ember/25"
+                placeholder="Judul proyek Anda"
+                className="mt-1.5 w-full rounded-lg border border-white/12 bg-elevated px-3.5 py-2.5 text-sm text-ink-primary placeholder:text-ink-muted outline-none focus:border-ember focus:ring-2 focus:ring-ember/25"
               />
             </div>
 
@@ -359,7 +360,7 @@ function ProjectFormDialogContent({
               <div>
                 <label
                   htmlFor="proj-category"
-                  className="block font-mono text-[11px] uppercase tracking-[0.14em] text-ink-muted"
+                  className="block font-mono text-[11px] uppercase tracking-[0.1em] text-ink-muted"
                 >
                   KATEGORI <span className="text-ember">*</span>
                 </label>
@@ -369,7 +370,7 @@ function ProjectFormDialogContent({
                   onChange={(e) =>
                     setCategory(e.target.value as ProjectCategory)
                   }
-                  className="mt-1.5 w-full rounded-xl border border-white/12 bg-elevated px-3.5 py-2.5 text-sm text-ink-primary outline-none focus:border-ember focus:ring-2 focus:ring-ember/25"
+                  className="mt-1.5 w-full rounded-lg border border-white/12 bg-elevated px-3.5 py-2.5 text-sm text-ink-primary outline-none focus:border-ember focus:ring-2 focus:ring-ember/25"
                 >
                   {PROJECT_CATEGORIES.map((cat) => (
                     <option key={cat} value={cat} className="bg-surface">
@@ -379,10 +380,9 @@ function ProjectFormDialogContent({
                 </select>
               </div>
 
-              <label className="flex h-[42px] cursor-pointer items-center justify-between rounded-xl border border-white/12 bg-elevated px-3.5 transition-colors hover:border-ember/45">
-                <span className="inline-flex items-center gap-1.5 text-xs font-medium text-amber">
-                  <Star className="h-3.5 w-3.5 fill-amber" />
-                  <span>Unggulan (Featured)</span>
+              <label className="flex h-[42px] items-center justify-between rounded-lg border border-white/12 bg-elevated px-3.5 transition-colors hover:border-ember/45">
+                <span className="text-xs font-medium text-amber">
+                  Tandai Unggulan (Featured)
                 </span>
                 <input
                   type="checkbox"
@@ -390,7 +390,7 @@ function ProjectFormDialogContent({
                   onChange={(e) => setFeatured(e.target.checked)}
                   className="sr-only peer"
                 />
-                <span className="relative h-5 w-9 rounded-full bg-white/15 transition-colors peer-checked:bg-ember after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:h-4 after:w-4 after:rounded-full after:bg-white after:transition-transform peer-checked:after:translate-x-4" />
+                <span className="relative h-5 w-9 rounded-full bg-white/15 transition-colors peer-checked:bg-ember peer-focus-visible:ring-2 peer-focus-visible:ring-ember after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:h-4 after:w-4 after:rounded-full after:bg-white after:transition-transform peer-checked:after:translate-x-4" />
               </label>
             </div>
 
@@ -399,7 +399,7 @@ function ProjectFormDialogContent({
               <div className="flex items-center justify-between">
                 <label
                   htmlFor="proj-summary"
-                  className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-muted"
+                  className="font-mono text-[11px] uppercase tracking-[0.1em] text-ink-muted"
                 >
                   RINGKASAN SINGKAT <span className="text-ember">*</span>
                 </label>
@@ -414,8 +414,8 @@ function ProjectFormDialogContent({
                 required
                 value={summary}
                 onChange={(e) => setSummary(e.target.value)}
-                placeholder="Deskripsi singkat maksimal 2 baris yang tampil di kartu proyek..."
-                className="mt-1.5 w-full resize-none rounded-xl border border-white/12 bg-elevated px-3.5 py-2.5 text-sm text-ink-primary placeholder:text-ink-muted outline-none focus:border-ember focus:ring-2 focus:ring-ember/25"
+                placeholder="Ringkasan singkat maksimal 2 baris untuk kartu proyek"
+                className="mt-1.5 w-full resize-none rounded-lg border border-white/12 bg-elevated px-3.5 py-2.5 text-sm text-ink-primary placeholder:text-ink-muted outline-none focus:border-ember focus:ring-2 focus:ring-ember/25"
               />
             </div>
 
@@ -423,7 +423,7 @@ function ProjectFormDialogContent({
             <div>
               <label
                 htmlFor="proj-description"
-                className="block font-mono text-[11px] uppercase tracking-[0.14em] text-ink-muted"
+                className="block font-mono text-[11px] uppercase tracking-[0.1em] text-ink-muted"
               >
                 DESKRIPSI LENGKAP (MODAL DETAIL)
               </label>
@@ -433,8 +433,8 @@ function ProjectFormDialogContent({
                 maxLength={2500}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                placeholder="Ceritakan arsitektur, peran Anda, tantangan teknis, dan solusi yang diterapkan..."
-                className="mt-1.5 w-full resize-none rounded-xl border border-white/12 bg-elevated px-3.5 py-2.5 text-sm text-ink-primary placeholder:text-ink-muted outline-none focus:border-ember focus:ring-2 focus:ring-ember/25"
+                placeholder="Jelaskan arsitektur, peran Anda, tantangan teknis, dan hasil proyek"
+                className="mt-1.5 w-full resize-none rounded-lg border border-white/12 bg-elevated px-3.5 py-2.5 text-sm text-ink-primary placeholder:text-ink-muted outline-none focus:border-ember focus:ring-2 focus:ring-ember/25"
               />
             </div>
 
@@ -442,15 +442,15 @@ function ProjectFormDialogContent({
             <div>
               <label
                 htmlFor="proj-tech"
-                className="block font-mono text-[11px] uppercase tracking-[0.14em] text-ink-muted"
+                className="block font-mono text-[11px] uppercase tracking-[0.1em] text-ink-muted"
               >
-                TECH STACK (TEKAN ENTER UNTUK TAMBAH CHIP)
+                TECH STACK (TEKAN ENTER UNTUK TAMBAH TAG)
               </label>
-              <div className="mt-1.5 flex flex-wrap items-center gap-1.5 rounded-xl border border-white/12 bg-elevated px-3 py-2 focus-within:border-ember focus-within:ring-2 focus-within:ring-ember/25">
+              <div className="mt-1.5 flex flex-wrap items-center gap-1.5 rounded-lg border border-white/12 bg-elevated px-3 py-2 focus-within:border-ember focus-within:ring-2 focus-within:ring-ember/25">
                 {techStack.map((tag) => (
                   <span
                     key={tag}
-                    className="inline-flex items-center gap-1 rounded-full border border-ember/40 bg-ember/15 px-2.5 py-0.5 font-mono text-[11px] text-ink-primary"
+                    className="inline-flex items-center gap-1 rounded-md border border-ember/40 bg-ember/12 px-2 py-0.5 font-mono text-[11px] text-ink-primary"
                   >
                     {tag}
                     <button
@@ -461,7 +461,7 @@ function ProjectFormDialogContent({
                       aria-label={`Hapus ${tag}`}
                       className="text-ink-secondary hover:text-ember"
                     >
-                      <X className="h-3 w-3" />
+                      <X aria-hidden="true" className="h-3 w-3" />
                     </button>
                   </span>
                 ))}
@@ -472,16 +472,16 @@ function ProjectFormDialogContent({
                   onChange={(e) => setTechDraft(e.target.value)}
                   onKeyDown={handleTechKeyDown}
                   onBlur={() => addTechTag(techDraft)}
-                  placeholder="+ Tambah tech..."
+                  placeholder="Tambah teknologi..."
                   className="min-w-[120px] flex-1 bg-transparent py-1 text-xs text-ink-primary placeholder:text-ink-muted outline-none"
                 />
               </div>
             </div>
 
-            {/* Thumbnail Picker (Upload or URL) */}
+            {/* Thumbnail Picker (Native button upload or URL) */}
             <div>
               <div className="flex items-center justify-between gap-2">
-                <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink-muted">
+                <span className="font-mono text-[11px] uppercase tracking-[0.1em] text-ink-muted">
                   THUMBNAIL PROYEK (MAKS. 2 MB)
                 </span>
                 <div className="inline-flex items-center gap-2 font-mono text-[11px]">
@@ -494,8 +494,9 @@ function ProjectFormDialogContent({
                         : "text-ink-muted hover:text-ink-primary"
                     }
                   >
-                    [ Unggah File ]
+                    Unggah File
                   </button>
+                  <span className="text-ink-muted">/</span>
                   <button
                     type="button"
                     onClick={() => setThumbMode("url")}
@@ -505,13 +506,22 @@ function ProjectFormDialogContent({
                         : "text-ink-muted hover:text-ink-primary"
                     }
                   >
-                    [ URL Gambar ]
+                    URL Gambar
                   </button>
                 </div>
               </div>
 
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/jpeg,image/png,image/webp"
+                onChange={handleFileChange}
+                className="hidden"
+              />
+
               {thumbMode === "upload" ? (
-                <div
+                <button
+                  type="button"
                   onClick={() => fileInputRef.current?.click()}
                   onDragOver={(e) => e.preventDefault()}
                   onDrop={(e) => {
@@ -519,38 +529,41 @@ function ProjectFormDialogContent({
                     const file = e.dataTransfer.files?.[0];
                     if (file) void handleFileUpload(file);
                   }}
-                  className="mt-2 flex cursor-pointer flex-col items-center justify-center rounded-xl border border-dashed border-ember/45 bg-elevated/70 px-4 py-5 text-center transition-colors hover:border-ember hover:bg-ember/10"
+                  className="mt-2 flex w-full flex-col items-center justify-center rounded-xl border border-dashed border-ember/45 bg-elevated/70 px-4 py-5 text-center transition-colors hover:border-ember hover:bg-ember/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember"
                 >
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    accept="image/jpeg,image/png,image/webp"
-                    onChange={handleFileChange}
-                    className="hidden"
-                  />
                   {uploading ? (
-                    <Loader2 className="h-5 w-5 animate-spin text-ember" />
+                    <Loader2
+                      aria-hidden="true"
+                      className="h-5 w-5 animate-spin text-ember"
+                    />
                   ) : (
-                    <Upload className="h-5 w-5 text-ember" />
+                    <Upload aria-hidden="true" className="h-5 w-5 text-ember" />
                   )}
-                  <p className="mt-2 text-xs font-medium text-ink-primary">
+                  <span className="mt-2 text-xs font-medium text-ink-primary">
                     {uploading
                       ? "Mengunggah gambar..."
-                      : "Seret gambar ke sini atau klik untuk memilih file"}
-                  </p>
-                  <p className="mt-1 font-mono text-[10px] text-ink-muted">
-                    JPG, PNG, WebP &bull; Rasio 16:10 direkomendasikan (maks. 2 MB)
-                  </p>
-                </div>
+                      : "Seret gambar ke sini atau tekan untuk memilih file"}
+                  </span>
+                  <span className="mt-1 font-mono text-[10px] text-ink-muted">
+                    JPG, PNG, WebP &middot; Rasio 16:10 direkomendasikan (maks. 2 MB)
+                  </span>
+                </button>
               ) : (
                 <div className="mt-2 relative">
-                  <Link2 className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-ink-muted" />
+                  <Link2
+                    aria-hidden="true"
+                    className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-ink-muted"
+                  />
+                  <label htmlFor="proj-thumb-url" className="sr-only">
+                    URL Gambar Thumbnail
+                  </label>
                   <input
+                    id="proj-thumb-url"
                     type="url"
                     value={thumbnailUrl}
                     onChange={(e) => setThumbnailUrl(e.target.value)}
-                    placeholder="https://... atau /images/projects/..."
-                    className="w-full rounded-xl border border-white/12 bg-elevated pl-10 pr-3.5 py-2.5 text-sm text-ink-primary placeholder:text-ink-muted outline-none focus:border-ember focus:ring-2 focus:ring-ember/25"
+                    placeholder="https://contoh.com/thumbnail.webp"
+                    className="w-full rounded-lg border border-white/12 bg-elevated pl-10 pr-3.5 py-2.5 text-sm text-ink-primary placeholder:text-ink-muted outline-none focus:border-ember focus:ring-2 focus:ring-ember/25"
                   />
                 </div>
               )}
@@ -558,7 +571,7 @@ function ProjectFormDialogContent({
               {/* Quick Preset Thumbnails */}
               <div className="mt-2 flex flex-wrap items-center gap-1.5">
                 <span className="inline-flex items-center gap-1 font-mono text-[10px] text-ink-muted mr-1">
-                  <ImagePlus className="h-3 w-3" /> Preset:
+                  <ImagePlus aria-hidden="true" className="h-3 w-3" /> Preset:
                 </span>
                 {PRESET_THUMBNAILS.map((preset) => (
                   <button
@@ -582,7 +595,7 @@ function ProjectFormDialogContent({
               <div>
                 <label
                   htmlFor="proj-live-url"
-                  className="block font-mono text-[10px] uppercase tracking-[0.14em] text-ink-muted"
+                  className="block font-mono text-[10px] uppercase tracking-[0.1em] text-ink-muted"
                 >
                   URL LIVE DEMO (OPSIONAL)
                 </label>
@@ -591,14 +604,14 @@ function ProjectFormDialogContent({
                   type="url"
                   value={liveUrl}
                   onChange={(e) => setLiveUrl(e.target.value)}
-                  placeholder="https://mahdi-3d.vercel.app"
-                  className="mt-1.5 w-full rounded-xl border border-white/12 bg-elevated px-3.5 py-2.5 text-xs text-ink-primary placeholder:text-ink-muted outline-none focus:border-ember focus:ring-2 focus:ring-ember/25"
+                  placeholder="https://contoh-demo.com"
+                  className="mt-1.5 w-full rounded-lg border border-white/12 bg-elevated px-3.5 py-2.5 text-xs text-ink-primary placeholder:text-ink-muted outline-none focus:border-ember focus:ring-2 focus:ring-ember/25"
                 />
               </div>
               <div>
                 <label
                   htmlFor="proj-github-url"
-                  className="block font-mono text-[10px] uppercase tracking-[0.14em] text-ink-muted"
+                  className="block font-mono text-[10px] uppercase tracking-[0.1em] text-ink-muted"
                 >
                   URL GITHUB (OPSIONAL)
                 </label>
@@ -607,8 +620,8 @@ function ProjectFormDialogContent({
                   type="url"
                   value={githubUrl}
                   onChange={(e) => setGithubUrl(e.target.value)}
-                  placeholder="https://github.com/mahdi-dev/..."
-                  className="mt-1.5 w-full rounded-xl border border-white/12 bg-elevated px-3.5 py-2.5 text-xs text-ink-primary placeholder:text-ink-muted outline-none focus:border-ember focus:ring-2 focus:ring-ember/25"
+                  placeholder="https://github.com/username/repo"
+                  className="mt-1.5 w-full rounded-lg border border-white/12 bg-elevated px-3.5 py-2.5 text-xs text-ink-primary placeholder:text-ink-muted outline-none focus:border-ember focus:ring-2 focus:ring-ember/25"
                 />
               </div>
             </div>
@@ -621,10 +634,9 @@ function ProjectFormDialogContent({
             }`}
           >
             <div>
-              <div className="mb-4 flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.16em] text-ember">
-                <span className="h-2 w-2 rounded-full bg-ember shadow-[0_0_8px_#FF4D00] animate-pulse" />
-                <span>PRATINJAU KARTU LANGSUNG</span>
-              </div>
+              <p className="mb-4 font-mono text-[11px] uppercase tracking-[0.12em] text-ink-secondary">
+                PRATINJAU KARTU LANGSUNG
+              </p>
 
               <div className="mx-auto max-w-[360px]">
                 <ProjectCard project={previewProject} previewMode />
@@ -636,19 +648,17 @@ function ProjectFormDialogContent({
               <button
                 type="button"
                 onClick={onClose}
-                className="rounded-full border border-white/12 bg-surface px-5 py-2.5 text-xs font-semibold text-ink-secondary transition-colors hover:border-white/25 hover:text-ink-primary"
+                className="min-h-[42px] rounded-lg border border-white/12 bg-surface px-5 py-2 text-xs font-semibold text-ink-secondary transition-colors hover:border-white/25 hover:text-ink-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember"
               >
                 Batal
               </button>
               <button
                 type="submit"
                 disabled={saving || uploading}
-                className="inline-flex items-center gap-2 rounded-full bg-ember px-6 py-2.5 font-display text-sm font-bold uppercase tracking-[0.1em] text-white shadow-[0_0_24px_-4px_rgba(255,77,0,0.55)] transition-all hover:bg-ember-glow disabled:opacity-55"
+                className="inline-flex min-h-[42px] items-center gap-2 rounded-lg bg-ember px-6 py-2 font-display text-sm font-bold uppercase tracking-[0.08em] text-white transition-colors hover:bg-ember-glow disabled:opacity-55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber"
               >
-                {saving ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                ) : (
-                  <ArrowUpRight className="h-4 w-4" />
+                {saving && (
+                  <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" />
                 )}
                 <span>
                   {saving

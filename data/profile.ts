@@ -19,7 +19,7 @@ export const profile = {
   heroDescription:
     "Mahasiswa IT & Web Developer yang memadukan creative coding 3D WebGL, efek riak air interaktif, dan rekayasa full-stack modern.",
   aboutQuote:
-    "Mengubah ide kompleks menjadi antarmuka web yang terasa hidup — memadukan estetika sinematik 3D dan arsitektur kode yang rapi.",
+    "Mengubah ide kompleks menjadi antarmuka web yang terasa hidup, memadukan estetika sinematik 3D dan arsitektur kode yang rapi.",
   aboutParagraphs: [
     "Saya Mahdi, mahasiswa Teknologi Informasi Semester 3 yang memiliki ketertarikan mendalam pada pengembangan Full-Stack Web dan Creative Frontend. Saya senang mengeksplorasi batas visual browser modern melalui Next.js, Three.js, React Three Fiber, dan custom GLSL shaders.",
     "Setiap proyek saya bangun dengan standar rekayasa modern: performa 60 FPS, aksesibilitas WCAG AA, arsitektur TypeScript yang ketat, serta sistem manajemen konten mandiri yang mudah dikembangkan.",

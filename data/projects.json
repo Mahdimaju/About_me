@@ -21,6 +21,21 @@
     "updatedAt": "2026-11-24T08:00:00.000Z"
   },
   {
+    "id": "laperhemat-a01d4b",
+    "title": "LaperHemat",
+    "summary": "Web SaaS untuk tugas kuliah",
+    "description": "saya sebagai web developer",
+    "category": "3D / Interaktif",
+    "techStack": [
+      "Next.js"
+    ],
+    "thumbnailUrl": "/uploads/thumb-1795496029271-69a7ef9f.png",
+    "liveUrl": "https://laper-hemat.vercel.app/",
+    "featured": false,
+    "createdAt": "2026-11-24T04:51:21.898Z",
+    "updatedAt": "2026-11-24T04:54:00.638Z"
+  },
+  {
     "id": "nebula-campus-analytics",
     "title": "Nebula Campus Analytics",
     "summary": "Dashboard manajemen tugas kuliah & analitik progres real-time dengan REST API & validasi Zod.",

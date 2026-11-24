@@ -75,18 +75,18 @@ export function DeleteConfirmModal({
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
           onClick={onClose}
-          className="fixed inset-0 z-[90] flex items-center justify-center bg-void/85 backdrop-blur-lg p-4"
+          className="fixed inset-0 z-[90] flex items-center justify-center bg-void/85 backdrop-blur-sm p-4"
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            initial={{ opacity: 0, scale: 0.96, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            exit={{ opacity: 0, scale: 0.96, y: 10 }}
             transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
             onClick={(e) => e.stopPropagation()}
-            className="w-full max-w-md rounded-2xl border border-[#EF4444]/40 bg-surface p-6 shadow-[0_28px_80px_-20px_rgba(0,0,0,0.95)]"
+            className="w-full max-w-md rounded-2xl border border-[#EF4444]/40 bg-surface p-6 shadow-2xl"
           >
-            <div className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-[#EF4444]">
-              <AlertTriangle className="h-3.5 w-3.5" />
+            <div className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.12em] text-[#EF4444]">
+              <AlertTriangle aria-hidden="true" className="h-3.5 w-3.5" />
               <span>KONFIRMASI PENGHAPUSAN</span>
             </div>
 
@@ -102,7 +102,8 @@ export function DeleteConfirmModal({
               <span className="font-semibold text-ink-primary">
                 &ldquo;{project.title}&rdquo;
               </span>{" "}
-              akan dihapus dari <code className="font-mono text-xs text-ember">data/projects.json</code>{" "}
+              akan dihapus dari{" "}
+              <code className="font-mono text-xs text-ember">data/projects.json</code>{" "}
               dan tidak dapat dibatalkan.
             </p>
 
@@ -111,7 +112,7 @@ export function DeleteConfirmModal({
                 type="button"
                 autoFocus
                 onClick={onClose}
-                className="rounded-full border border-white/15 bg-elevated px-5 py-2.5 text-xs font-semibold text-ink-primary hover:border-white/30 transition-colors"
+                className="min-h-[40px] rounded-lg border border-white/15 bg-elevated px-5 py-2 text-xs font-semibold text-ink-primary hover:border-white/30 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember"
               >
                 Batal
               </button>
@@ -119,9 +120,11 @@ export function DeleteConfirmModal({
                 type="button"
                 disabled={deleting}
                 onClick={handleConfirm}
-                className="inline-flex items-center gap-2 rounded-full bg-[#EF4444] px-5 py-2.5 text-xs font-semibold text-white transition-colors hover:bg-[#DC2626] disabled:opacity-55"
+                className="inline-flex min-h-[40px] items-center gap-2 rounded-lg bg-[#EF4444] px-5 py-2 text-xs font-semibold text-white transition-colors hover:bg-[#DC2626] disabled:opacity-55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#EF4444]"
               >
-                {deleting && <Loader2 className="h-3.5 w-3.5 animate-spin" />}
+                {deleting && (
+                  <Loader2 aria-hidden="true" className="h-3.5 w-3.5 animate-spin" />
+                )}
                 <span>{deleting ? "Menghapus..." : "Ya, Hapus Proyek"}</span>
               </button>
             </div>

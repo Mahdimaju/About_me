@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import dynamic from "next/dynamic";
 import { motion } from "motion/react";
-import { ArrowUpRight, Cpu, FolderGit2, GraduationCap, Play } from "lucide-react";
+import { ArrowUpRight, Pause, Play } from "lucide-react";
 import { profile } from "@/data/profile";
 import { WaterRippleCanvas } from "@/components/canvas/WaterRippleCanvas";
 import { usePrefersReducedMotion } from "@/components/ui/useReducedMotion";
@@ -20,15 +21,16 @@ interface HeroSectionProps {
 
 export function HeroSection({ projectCount, skillCount }: HeroSectionProps) {
   const reducedMotion = usePrefersReducedMotion();
+  const [motionPaused, setMotionPaused] = useState(false);
 
   const fadeUp = (delay: number) =>
     reducedMotion
       ? {}
       : {
-          initial: { opacity: 0, y: 20 },
+          initial: { opacity: 0, y: 18 },
           animate: { opacity: 1, y: 0 },
           transition: {
-            duration: 0.65,
+            duration: 0.6,
             delay,
             ease: [0.22, 1, 0.36, 1] as const,
           },
@@ -46,23 +48,31 @@ export function HeroSection({ projectCount, skillCount }: HeroSectionProps) {
           <WaterRippleCanvas
             imageSrc={profile.heroImage}
             alt="Mahdi di depan cincin gerhana matahari obsidian"
+            width={1408}
+            height={768}
+            fetchPriority="high"
             focalPoint={[0.68, 0.34]}
             displacement={1.15}
             causticIntensity={0.28}
             listenTarget="window"
+            paused={motionPaused}
             className="h-full w-full"
           />
         </div>
 
-        {/* Mobile composition: portrait framed cleanly above text */}
+        {/* Mobile composition */}
         <div className="md:hidden absolute inset-x-0 top-0 h-[56svh]">
           <WaterRippleCanvas
             imageSrc={profile.heroImage}
             alt="Mahdi di depan cincin gerhana matahari obsidian"
+            width={1408}
+            height={768}
+            fetchPriority="high"
             focalPoint={[0.72, 0.22]}
             displacement={0.85}
             causticIntensity={0.22}
             listenTarget="self"
+            paused={motionPaused}
             className="h-full w-full"
           />
           <div
@@ -71,10 +81,10 @@ export function HeroSection({ projectCount, skillCount }: HeroSectionProps) {
           />
         </div>
 
-        {/* Contrast protection scrim so left typography is always ultra-crisp & readable */}
+        {/* Contrast protection scrim: guarantees >14:1 contrast for left typography */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 hidden md:block bg-gradient-to-r from-void via-void/80 via-[44%] to-transparent"
+          className="pointer-events-none absolute inset-0 hidden md:block bg-gradient-to-r from-void via-void/85 via-[44%] to-transparent"
         />
         <div
           aria-hidden="true"
@@ -83,119 +93,105 @@ export function HeroSection({ projectCount, skillCount }: HeroSectionProps) {
       </div>
 
       {/* Layer 2: Interactive 3D WebGL Scene (Solar Eclipse Halo + Obsidian Shards + Embers) */}
-      <Hero3DScene />
+      <Hero3DScene paused={motionPaused} />
 
-      {/* Layer 3: Crisp Readable Hero Content (Never Distorted by Water Shader) */}
+      {/* Layer 3: Crisp Readable Hero Content */}
       <div className="relative z-30 mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12">
         <div className="mt-[34svh] md:mt-0 max-w-xl lg:max-w-[560px]">
-          {/* Eyebrow */}
-          <motion.div
-            {...fadeUp(0.05)}
-            className="inline-flex items-center gap-2.5 font-serif text-sm sm:text-[15px] font-semibold uppercase tracking-[0.18em]"
+          {/* Editorial Intro Line (no decorative dot or pill) */}
+          <motion.p
+            {...fadeUp(0.04)}
+            className="font-serif text-sm sm:text-[15px] font-semibold uppercase tracking-[0.16em]"
           >
-            <span
-              aria-hidden="true"
-              className="h-2 w-2 rounded-full bg-ember shadow-[0_0_12px_#FF4D00]"
-            />
-            <span className="text-ink-secondary">{profile.heroEyebrowPrefix}</span>
+            <span className="text-ink-secondary">{profile.heroEyebrowPrefix}</span>{" "}
             <span className="text-ember">{profile.shortName}</span>
-          </motion.div>
+          </motion.p>
 
           {/* Stacked Condensed Display Headline */}
           <motion.h1
-            {...fadeUp(0.12)}
-            className="mt-4 font-display text-[2.85rem] sm:text-[3.9rem] lg:text-[5.2rem] font-bold uppercase leading-[0.94] tracking-[-0.02em] text-ink-primary"
+            {...fadeUp(0.1)}
+            className="mt-3.5 font-display text-[2.85rem] sm:text-[3.9rem] lg:text-[5.25rem] font-bold uppercase leading-[0.94] tracking-[-0.02em] text-ink-primary"
           >
             <span className="block">{profile.heroHeadlineLine1}</span>
             <span className="block">{profile.heroHeadlineLine2}</span>
             <span className="block">
               {profile.heroHeadlineLine3Prefix}{" "}
-              <span className="text-ember drop-shadow-[0_0_32px_rgba(255,77,0,0.45)]">
-                {profile.heroHeadlineHighlight}
-              </span>
+              <span className="text-ember">{profile.heroHeadlineHighlight}</span>
             </span>
           </motion.h1>
 
           {/* Value Proposition Copy */}
           <motion.p
-            {...fadeUp(0.2)}
+            {...fadeUp(0.18)}
             className="mt-5 max-w-[46ch] text-[15px] sm:text-[16px] leading-[1.68] text-ink-secondary"
           >
             {profile.heroDescription}
           </motion.p>
 
-          {/* Signature CTA Group */}
+          {/* Focal CTA Group */}
           <motion.div
-            {...fadeUp(0.28)}
+            {...fadeUp(0.24)}
             className="mt-7 flex flex-wrap items-center gap-4 sm:gap-5"
           >
-            {/* Primary Capsule Button with Recessed Dark Orb */}
+            {/* Primary Capsule Focal CTA: intentional pill + glow dose #1 */}
             <a
               href="#projects"
-              className="group inline-flex w-full sm:w-auto items-center justify-between sm:justify-start gap-5 rounded-full bg-ember pl-7 pr-2 py-2 font-display text-[17px] font-bold uppercase tracking-[0.08em] text-white shadow-[0_0_28px_-4px_rgba(255,77,0,0.55)] transition-all duration-200 hover:bg-ember-glow hover:shadow-[0_0_38px_-2px_rgba(255,106,26,0.7)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber focus-visible:ring-offset-2 focus-visible:ring-offset-void"
+              className="group inline-flex min-h-[52px] w-full sm:w-auto items-center justify-between sm:justify-start gap-5 rounded-full bg-ember pl-7 pr-2 py-2 font-display text-[17px] font-bold uppercase tracking-[0.08em] text-white shadow-[var(--glow-hero-cta)] transition-all duration-200 hover:bg-ember-glow active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber focus-visible:ring-offset-2 focus-visible:ring-offset-void"
             >
               <span>LIHAT PROYEK</span>
               <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#090706] text-ink-primary transition-transform duration-200 group-hover:scale-105">
-                <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                <ArrowUpRight
+                  aria-hidden="true"
+                  className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
               </span>
             </a>
 
-            {/* Secondary Circular Icon Ring CTA */}
+            {/* Secondary Action: matte border, no glow */}
             <a
               href="#contact"
-              className="group inline-flex items-center gap-3 rounded-full py-1.5 pr-3 text-ink-primary transition-colors hover:text-ember-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember"
+              className="inline-flex min-h-[48px] items-center justify-center rounded-lg border border-white/15 bg-surface/90 px-5 py-2.5 font-display text-sm font-semibold uppercase tracking-[0.12em] text-ink-primary transition-colors hover:border-ember/60 hover:text-ember-glow active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember"
             >
-              <span className="flex h-11 w-11 items-center justify-center rounded-full border border-ember/70 bg-ember/10 text-ember transition-all group-hover:border-ember group-hover:bg-ember group-hover:text-white group-hover:shadow-[0_0_20px_-2px_rgba(255,77,0,0.6)]">
-                <Play className="h-3.5 w-3.5 fill-current translate-x-[1px]" />
-              </span>
-              <span className="font-display text-sm font-semibold uppercase tracking-[0.12em]">
-                HUBUNGI SAYA
-              </span>
+              HUBUNGI SAYA
             </a>
           </motion.div>
 
-          {/* Mini Stats Strip */}
-          <motion.div
-            {...fadeUp(0.36)}
-            className="mt-9 flex flex-wrap items-center gap-7 sm:gap-10"
+          {/* Real Inventory Stats (sourced directly from projects.json, skills.ts, profile.ts) */}
+          <motion.dl
+            {...fadeUp(0.32)}
+            className="mt-10 flex flex-wrap items-baseline gap-8 sm:gap-11 border-t border-white/[0.08] pt-6"
           >
-            <div className="flex flex-col">
-              <FolderGit2 className="mb-1.5 hidden sm:block h-4 w-4 text-ink-muted" />
-              <span className="font-display text-2xl sm:text-[28px] font-bold leading-none text-ink-primary">
-                {projectCount}+
-              </span>
-              <span className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-muted">
-                PROYEK SELESAI
-              </span>
+            <div>
+              <dd className="font-display text-2xl sm:text-[28px] font-bold leading-none text-ink-primary">
+                {projectCount}
+              </dd>
+              <dt className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-ink-muted">
+                PROYEK TERDOKUMENTASI
+              </dt>
             </div>
 
-            <div className="flex flex-col">
-              <Cpu className="mb-1.5 hidden sm:block h-4 w-4 text-ink-muted" />
-              <span className="font-display text-2xl sm:text-[28px] font-bold leading-none text-ink-primary">
-                {skillCount}+
-              </span>
-              <span className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-muted">
-                TECH STACK
-              </span>
+            <div>
+              <dd className="font-display text-2xl sm:text-[28px] font-bold leading-none text-ink-primary">
+                {skillCount}
+              </dd>
+              <dt className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-ink-muted">
+                TECH STACK AKTIF
+              </dt>
             </div>
 
-            <div className="flex flex-col">
-              <GraduationCap className="mb-1.5 hidden sm:block h-4 w-4 text-ember" />
-              <span className="font-display text-2xl sm:text-[28px] font-bold leading-none text-ember">
+            <div>
+              <dd className="font-display text-2xl sm:text-[28px] font-bold leading-none text-ember">
                 {profile.semesterShort}
-              </span>
-              <span className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-muted">
-                MAHASISWA IT
-              </span>
+              </dd>
+              <dt className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.12em] text-ink-muted">
+                S1 TEKNOLOGI INFORMASI
+              </dt>
             </div>
-          </motion.div>
+          </motion.dl>
 
-          {/* Bottom Quick Tech & Social Row */}
-          <motion.div {...fadeUp(0.44)} className="mt-8 hidden sm:block">
-            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-muted">
-              TEKNOLOGI UTAMA &amp; TAUTAN
-            </p>
-            <div className="mt-3 flex flex-wrap items-center gap-2.5">
+          {/* Direct Links Row */}
+          <motion.div {...fadeUp(0.38)} className="mt-7 hidden sm:block">
+            <div className="flex flex-wrap items-center gap-2">
               {profile.heroBadges.map((badge) => (
                 <a
                   key={badge.code}
@@ -208,10 +204,10 @@ export function HeroSection({ projectCount, skillCount }: HeroSectionProps) {
                   }
                   title={badge.title}
                   aria-label={badge.title}
-                  className={`flex h-9 w-9 items-center justify-center rounded-lg border font-mono text-xs font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:border-ember/60 hover:text-ember hover:shadow-[0_0_16px_-4px_rgba(255,77,0,0.45)] ${
+                  className={`flex h-9 w-9 items-center justify-center rounded-md border font-mono text-xs font-semibold transition-colors hover:border-ember/60 hover:text-ember focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember ${
                     "accent" in badge && badge.accent
-                      ? "border-ember/50 bg-ember/15 text-ember"
-                      : "border-white/10 bg-surface/80 text-ink-secondary"
+                      ? "border-ember/45 bg-ember/12 text-ember"
+                      : "border-white/10 bg-surface text-ink-secondary"
                   }`}
                 >
                   {badge.code}
@@ -222,42 +218,57 @@ export function HeroSection({ projectCount, skillCount }: HeroSectionProps) {
         </div>
       </div>
 
-      {/* Desktop Right Vertical Micro-Rail & Scroll Cue */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none hidden lg:flex fixed-none absolute right-6 top-28 bottom-10 z-30 flex-col items-center justify-between"
-      >
-        <div className="flex flex-col items-center gap-4">
-          <span className="h-3 w-3 rounded-full bg-ember shadow-[0_0_24px_6px_rgba(255,77,0,0.75)]" />
-          <span className="vertical-text font-mono text-[10px] tracking-[0.34em] text-ink-muted uppercase">
+      {/* Desktop Right Micro-Rail & R-39 Motion Pause Control */}
+      <div className="hidden lg:flex absolute right-6 top-28 bottom-8 z-30 flex-col items-end justify-between">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none flex flex-col items-center gap-3 pr-2"
+        >
+          <span className="h-8 w-[1px] bg-white/15" />
+          <span className="vertical-text font-mono text-[10px] tracking-[0.28em] text-ink-muted uppercase">
             INTERACTIVE 3D PORTFOLIO
           </span>
-          <span className="h-2 w-2 rounded-full bg-amber/80 shadow-[0_0_14px_3px_rgba(255,162,58,0.65)]" />
+          <span className="h-8 w-[1px] bg-white/15" />
         </div>
 
-        <div className="text-right pr-2">
-          <p className="font-display text-[11px] uppercase leading-tight tracking-[0.14em] text-ink-muted">
-            BUILDING
-            <br />
-            IMPACT THROUGH
-            <br />
-            <span className="text-ink-secondary">CODE &amp; 3D</span>
-          </p>
-        </div>
+        {/* R-39: Pause control for continuous >5s WebGL 3D & ripple animation */}
+        {!reducedMotion && (
+          <button
+            type="button"
+            onClick={() => setMotionPaused((prev) => !prev)}
+            aria-pressed={motionPaused}
+            aria-label={
+              motionPaused
+                ? "Putar kembali animasi 3D dan riak air"
+                : "Jeda animasi 3D dan riak air"
+            }
+            className="inline-flex items-center gap-2 rounded-lg border border-white/12 bg-surface px-3 py-2 font-mono text-[11px] text-ink-secondary transition-colors hover:border-ember/50 hover:text-ink-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember"
+          >
+            {motionPaused ? (
+              <>
+                <Play aria-hidden="true" className="h-3 w-3 text-ember" />
+                <span>Putar 3D</span>
+              </>
+            ) : (
+              <>
+                <Pause aria-hidden="true" className="h-3 w-3 text-ember" />
+                <span>Jeda 3D</span>
+              </>
+            )}
+          </button>
+        )}
       </div>
 
-      {/* Interactive Scroll Down Indicator */}
+      {/* Calm Static Scroll Cue (no endless bounce) */}
       <a
         href="#about"
-        aria-label="Gulir ke Tentang Saya"
-        className="group absolute bottom-5 left-1/2 z-30 hidden md:flex -translate-x-1/2 flex-col items-center gap-2 text-ink-muted hover:text-ember transition-colors"
+        aria-label="Gulir ke bagian Tentang Saya"
+        className="group absolute bottom-5 left-1/2 z-30 hidden md:flex -translate-x-1/2 flex-col items-center gap-2 text-ink-muted hover:text-ink-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember rounded-sm px-2 py-1"
       >
-        <span className="font-mono text-[10px] uppercase tracking-[0.22em]">
+        <span className="font-mono text-[10px] uppercase tracking-[0.18em]">
           GULIR
         </span>
-        <span className="relative h-7 w-[1px] overflow-hidden bg-white/15">
-          <span className="absolute inset-x-0 top-0 h-3 bg-ember shadow-[0_0_8px_#FF4D00] animate-bounce" />
-        </span>
+        <span className="h-6 w-[1px] bg-white/20 transition-all duration-200 group-hover:h-8 group-hover:bg-ember" />
       </a>
     </section>
   );

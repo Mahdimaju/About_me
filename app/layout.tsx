@@ -37,7 +37,7 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mahdi — Personal Interactive 3D Portfolio | Mahasiswa IT & Web Developer",
+  title: "Mahdi | Personal Interactive 3D Portfolio, Mahasiswa IT & Web Developer",
   description:
     "Website portofolio pribadi interaktif milik Mahdi (Mahasiswa S1 Teknologi Informasi Semester 3 & Web Developer). Memadukan 3D WebGL React Three Fiber, shader riak air obsidian cair, dan Next.js Full-Stack.",
   keywords: [
@@ -52,12 +52,12 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Mahdi" }],
   openGraph: {
-    title: "Mahdi — Interactive 3D Web Developer Portfolio",
+    title: "Mahdi | Interactive 3D Web Developer Portfolio",
     description:
       "Membangun pengalaman web yang interaktif: 3D WebGL, efek riak air berbasis GLSL shader, dan rekayasa Next.js Full-Stack.",
     type: "website",
     locale: "id_ID",
-    siteName: "About_me — Mahdi Portfolio",
+    siteName: "About_me | Mahdi Portfolio",
   },
 };
 

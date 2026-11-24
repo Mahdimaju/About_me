@@ -6,13 +6,13 @@ import {
   ArrowLeft,
   Eye,
   EyeOff,
+  FolderOpen,
   Loader2,
   Lock,
   LogOut,
   Pencil,
   Plus,
   ShieldCheck,
-  Star,
   Trash2,
 } from "lucide-react";
 import type { Project } from "@/lib/types";
@@ -95,15 +95,15 @@ function AdminDashboardInner({
 
   return (
     <div className="min-h-screen bg-void text-ink-primary px-5 sm:px-8 py-10">
-      <div className="mx-auto max-w-6xl">
+      <main className="mx-auto max-w-6xl">
         {/* Top Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.08]">
+        <header className="flex flex-wrap items-center justify-between gap-4 pb-8 border-b border-white/[0.08]">
           <div>
             <Link
               href="/"
-              className="inline-flex items-center gap-2 font-mono text-xs text-ink-secondary hover:text-ember transition-colors"
+              className="inline-flex items-center gap-2 font-mono text-xs text-ink-secondary hover:text-ember transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember rounded-sm"
             >
-              <ArrowLeft className="h-3.5 w-3.5" />
+              <ArrowLeft aria-hidden="true" className="h-3.5 w-3.5" />
               <span>Kembali ke Portofolio</span>
             </Link>
             <h1 className="mt-3 font-display text-3xl sm:text-4xl font-bold uppercase tracking-[0.02em]">
@@ -113,8 +113,8 @@ function AdminDashboardInner({
 
           {isAdmin && (
             <div className="flex flex-wrap items-center gap-3">
-              <span className="inline-flex items-center gap-2 rounded-full border border-[#22C55E]/35 bg-[#22C55E]/10 px-3.5 py-1.5 font-mono text-[11px] text-[#22C55E]">
-                <ShieldCheck className="h-3.5 w-3.5" />
+              <span className="inline-flex items-center gap-2 rounded-md border border-[#22C55E]/35 bg-[#22C55E]/10 px-3 py-1.5 font-mono text-[11px] text-[#22C55E]">
+                <ShieldCheck aria-hidden="true" className="h-3.5 w-3.5" />
                 TERAUTENTIKASI
               </span>
               <button
@@ -123,28 +123,28 @@ function AdminDashboardInner({
                   setEditing(null);
                   setFormOpen(true);
                 }}
-                className="inline-flex items-center gap-1.5 rounded-full bg-ember px-5 py-2.5 font-display text-sm font-bold uppercase tracking-[0.1em] text-white shadow-[0_0_24px_-4px_rgba(255,77,0,0.55)] hover:bg-ember-glow transition-all"
+                className="inline-flex min-h-[42px] items-center gap-1.5 rounded-lg bg-ember px-5 py-2.5 font-display text-sm font-bold uppercase tracking-[0.08em] text-white hover:bg-ember-glow transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber"
               >
-                <Plus className="h-4 w-4" />
+                <Plus aria-hidden="true" className="h-4 w-4" />
                 <span>TAMBAH PROYEK</span>
               </button>
               <button
                 type="button"
                 onClick={handleLogout}
-                className="inline-flex items-center gap-1.5 rounded-full border border-white/12 bg-surface px-4 py-2.5 text-xs text-ink-secondary hover:border-[#EF4444]/50 hover:text-[#EF4444] transition-colors"
+                className="inline-flex min-h-[42px] items-center gap-1.5 rounded-lg border border-white/12 bg-surface px-4 py-2.5 text-xs text-ink-secondary hover:border-[#EF4444]/50 hover:text-[#EF4444] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember"
               >
-                <LogOut className="h-3.5 w-3.5" />
+                <LogOut aria-hidden="true" className="h-3.5 w-3.5" />
                 <span>Keluar</span>
               </button>
             </div>
           )}
-        </div>
+        </header>
 
-        {/* Auth Gate or Management Table */}
+        {/* Auth Gate or Management List */}
         {!isAdmin ? (
-          <div className="mx-auto mt-16 max-w-md rounded-2xl border border-ember/30 bg-surface p-8 text-center shadow-2xl">
-            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full border border-ember/40 bg-ember/15 text-amber">
-              <Lock className="h-5 w-5" />
+          <div className="mx-auto mt-16 max-w-md rounded-2xl border border-white/12 bg-surface p-8 text-center">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl border border-ember/40 bg-ember/12 text-amber">
+              <Lock aria-hidden="true" className="h-5 w-5" />
             </div>
             <h2 className="mt-4 font-display text-2xl font-bold uppercase">
               AUTENTIKASI MODE ADMIN
@@ -155,26 +155,36 @@ function AdminDashboardInner({
             </p>
 
             <form onSubmit={handleLogin} className="mt-6 text-left">
-              <div className="relative">
+              <label
+                htmlFor="admin-page-passcode"
+                className="block font-mono text-[11px] uppercase tracking-[0.1em] text-ink-muted"
+              >
+                Passcode Admin
+              </label>
+              <div className="relative mt-1.5">
                 <input
+                  id="admin-page-passcode"
                   type={showPass ? "text" : "password"}
                   value={passcode}
                   onChange={(e) => {
                     setPasscode(e.target.value);
                     if (authError) setAuthError(null);
                   }}
-                  placeholder="Masukkan passcode admin..."
-                  className="w-full rounded-xl border border-ember/45 bg-elevated pl-4 pr-16 py-3 text-sm text-ink-primary placeholder:text-ink-muted outline-none focus:border-ember focus:ring-2 focus:ring-ember/25"
+                  placeholder="Masukkan passcode admin"
+                  className="w-full rounded-lg border border-white/15 bg-elevated pl-4 pr-16 py-3 text-sm text-ink-primary placeholder:text-ink-muted outline-none focus:border-ember focus:ring-2 focus:ring-ember/25"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPass((p) => !p)}
+                  aria-label={
+                    showPass ? "Sembunyikan passcode" : "Tampilkan passcode"
+                  }
                   className="absolute right-3 top-1/2 -translate-y-1/2 inline-flex items-center gap-1 font-mono text-[10px] text-ink-muted hover:text-ink-primary"
                 >
                   {showPass ? (
-                    <EyeOff className="h-3.5 w-3.5" />
+                    <EyeOff aria-hidden="true" className="h-3.5 w-3.5" />
                   ) : (
-                    <Eye className="h-3.5 w-3.5" />
+                    <Eye aria-hidden="true" className="h-3.5 w-3.5" />
                   )}
                   <span>{showPass ? "HIDE" : "SHOW"}</span>
                 </button>
@@ -185,42 +195,69 @@ function AdminDashboardInner({
               <button
                 type="submit"
                 disabled={authLoading}
-                className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-ember px-6 py-3 font-display text-sm font-bold uppercase tracking-[0.12em] text-white shadow-[0_0_24px_-4px_rgba(255,77,0,0.55)] hover:bg-ember-glow disabled:opacity-55"
+                className="mt-5 inline-flex min-h-[44px] w-full items-center justify-center gap-2 rounded-lg bg-ember px-6 py-3 font-display text-sm font-bold uppercase tracking-[0.1em] text-white hover:bg-ember-glow disabled:opacity-55 transition-colors"
               >
-                {authLoading && <Loader2 className="h-4 w-4 animate-spin" />}
+                {authLoading && (
+                  <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" />
+                )}
                 <span>{authLoading ? "MEMVERIFIKASI..." : "MASUK MODE ADMIN"}</span>
               </button>
             </form>
           </div>
+        ) : projects.length === 0 ? (
+          <div className="mt-10 rounded-xl border border-white/[0.09] bg-surface px-6 py-14 text-center">
+            <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-elevated text-ink-muted">
+              <FolderOpen aria-hidden="true" className="h-6 w-6" />
+            </div>
+            <h2 className="mt-4 font-display text-2xl font-semibold uppercase">
+              Belum Ada Proyek Tersimpan
+            </h2>
+            <p className="mx-auto mt-2 max-w-md text-sm text-ink-secondary">
+              File <code className="font-mono text-xs text-ember">data/projects.json</code>{" "}
+              saat ini kosong. Tambahkan proyek pertama untuk menampilkannya di portofolio.
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                setEditing(null);
+                setFormOpen(true);
+              }}
+              className="mt-6 inline-flex min-h-[44px] items-center gap-1.5 rounded-lg bg-ember px-5 py-2.5 text-xs font-semibold text-white hover:bg-ember-glow"
+            >
+              <Plus aria-hidden="true" className="h-4 w-4" />
+              <span>Tambah Proyek Pertama</span>
+            </button>
+          </div>
         ) : (
-          <div className="mt-8 grid grid-cols-1 gap-4">
+          <div className="mt-8 grid grid-cols-1 gap-3.5">
             {projects.map((project) => (
               <div
                 key={project.id}
-                className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-white/[0.08] bg-surface p-4 hover:border-ember/40 transition-colors"
+                className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-white/[0.09] bg-surface p-4 hover:border-ember/45 transition-colors"
               >
                 <div className="flex items-center gap-4 min-w-0">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={project.thumbnailUrl}
                     alt={project.title}
-                    className="h-16 w-24 shrink-0 rounded-xl border border-white/10 object-cover bg-void"
+                    width={96}
+                    height={64}
+                    className="h-16 w-24 shrink-0 rounded-lg border border-white/10 object-cover bg-void"
                   />
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className="font-mono text-[10px] uppercase tracking-[0.12em] text-ember">
+                      <span className="font-mono text-[10px] uppercase tracking-[0.1em] text-ember">
                         {project.category}
                       </span>
                       {project.featured && (
-                        <span className="inline-flex items-center gap-1 rounded-full bg-amber/15 px-2 py-0.5 font-mono text-[10px] text-amber">
-                          <Star className="h-2.5 w-2.5 fill-amber" />
+                        <span className="rounded-md bg-amber/15 px-2 py-0.5 font-mono text-[10px] text-amber">
                           Unggulan
                         </span>
                       )}
                     </div>
-                    <h3 className="mt-1 truncate font-display text-xl font-semibold uppercase text-ink-primary">
+                    <h2 className="mt-1 truncate font-display text-xl font-semibold uppercase text-ink-primary">
                       {project.title}
-                    </h3>
+                    </h2>
                     <p className="truncate text-xs text-ink-secondary">
                       {project.summary}
                     </p>
@@ -234,17 +271,17 @@ function AdminDashboardInner({
                       setEditing(project);
                       setFormOpen(true);
                     }}
-                    className="inline-flex items-center gap-1.5 rounded-xl border border-white/12 bg-elevated px-3.5 py-2 text-xs font-medium text-ink-primary hover:border-ember/60 hover:text-ember-glow transition-colors"
+                    className="inline-flex min-h-[40px] items-center gap-1.5 rounded-lg border border-white/12 bg-elevated px-3.5 py-2 text-xs font-medium text-ink-primary hover:border-ember/60 hover:text-ember-glow transition-colors"
                   >
-                    <Pencil className="h-3.5 w-3.5" />
+                    <Pencil aria-hidden="true" className="h-3.5 w-3.5" />
                     <span>Edit</span>
                   </button>
                   <button
                     type="button"
                     onClick={() => setDeleting(project)}
-                    className="inline-flex items-center gap-1.5 rounded-xl border border-[#EF4444]/35 bg-[#EF4444]/10 px-3.5 py-2 text-xs font-medium text-[#EF4444] hover:bg-[#EF4444]/20 transition-colors"
+                    className="inline-flex min-h-[40px] items-center gap-1.5 rounded-lg border border-[#EF4444]/35 bg-[#EF4444]/10 px-3.5 py-2 text-xs font-medium text-[#EF4444] hover:bg-[#EF4444]/20 transition-colors"
                   >
-                    <Trash2 className="h-3.5 w-3.5" />
+                    <Trash2 aria-hidden="true" className="h-3.5 w-3.5" />
                     <span>Hapus</span>
                   </button>
                 </div>
@@ -252,7 +289,7 @@ function AdminDashboardInner({
             ))}
           </div>
         )}
-      </div>
+      </main>
 
       <ProjectFormModal
         open={formOpen}

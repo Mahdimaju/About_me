@@ -232,7 +232,7 @@ function EclipseAndShards({
   );
 }
 
-export function Hero3DScene() {
+export function Hero3DScene({ paused = false }: { paused?: boolean }) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const pointerRef = useRef({ x: 0, y: 0 });
   const reducedMotion = usePrefersReducedMotion();
@@ -268,21 +268,8 @@ export function Hero3DScene() {
     return () => observer.disconnect();
   }, []);
 
-  if (reducedMotion || webglError || isTouch) {
-    return (
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 overflow-hidden"
-      >
-        <div
-          className="absolute right-[10%] top-[10%] h-[360px] w-[360px] md:h-[460px] md:w-[460px] rounded-full opacity-35 blur-2xl animate-eclipse-pulse"
-          style={{
-            background:
-              "radial-gradient(circle, transparent 54%, rgba(255, 77, 0, 0.55) 66%, rgba(158, 31, 0, 0.25) 78%, transparent 100%)",
-          }}
-        />
-      </div>
-    );
+  if (reducedMotion || webglError || isTouch || paused) {
+    return null;
   }
 
   return (
