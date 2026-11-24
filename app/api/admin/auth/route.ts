@@ -4,6 +4,7 @@ import {
   buildAdminCookieOptions,
   createSessionToken,
   isAdminAuthenticated,
+  isSecureRequest,
   verifyPasscode,
 } from "@/lib/auth";
 import { adminPasscodeSchema } from "@/lib/validators";
@@ -37,7 +38,7 @@ export async function POST(request: Request) {
     const token = createSessionToken();
     const response = NextResponse.json({ authenticated: true });
     response.cookies.set({
-      ...buildAdminCookieOptions(),
+      ...buildAdminCookieOptions(request),
       value: token,
     });
     return response;
@@ -49,14 +50,14 @@ export async function POST(request: Request) {
   }
 }
 
-export async function DELETE() {
+export async function DELETE(request: Request) {
   const response = NextResponse.json({ authenticated: false });
   response.cookies.set({
     name: ADMIN_COOKIE_NAME,
     value: "",
     httpOnly: true,
     sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
+    secure: isSecureRequest(request),
     path: "/",
     maxAge: 0,
   });

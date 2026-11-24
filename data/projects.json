@@ -5,7 +5,12 @@
     "summary": "Kalkulator craving dan cart-hacking untuk membandingkan harga akhir GoFood, GrabFood, dan ShopeeFood dengan batas kalori harian.",
     "description": "Aplikasi Web SaaS yang dibangun dengan Next.js untuk membantu pengguna membandingkan harga akhir pesanan makanan lintas layanan GoFood, GrabFood, dan ShopeeFood lengkap dengan rekomendasi add-on hemat serta perhitungan batas kalori harian.",
     "category": "Web App",
-    "techStack": ["Next.js", "TypeScript", "Tailwind CSS", "Lucide"],
+    "techStack": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Lucide"
+    ],
     "thumbnailUrl": "/uploads/thumb-1795496029271-69a7ef9f.png",
     "liveUrl": "https://laper-hemat.vercel.app",
     "githubUrl": "https://github.com/Mahdimaju/socap",
@@ -19,7 +24,12 @@
     "summary": "Simulator dalang wayang kulit virtual berbasis AI hand tracking (MediaPipe Hands) dan inverse kinematics 60 FPS di browser.",
     "description": "Aplikasi web interaktif yang menggabungkan pelestarian budaya wayang kulit dengan computer vision langsung di browser. Mendukung mode webcam hand tracking berbasis MediaPipe Hands dan mode simulasi mouse untuk menggerakkan tokoh Raden Gatotkaca secara halus.",
     "category": "3D / Interaktif",
-    "techStack": ["MediaPipe Hands", "Tailwind CSS", "HTML5 Canvas", "JavaScript"],
+    "techStack": [
+      "MediaPipe Hands",
+      "Tailwind CSS",
+      "HTML5 Canvas",
+      "JavaScript"
+    ],
     "thumbnailUrl": "/images/projects/vercel-wayang.svg",
     "liveUrl": "https://wayangv1.vercel.app",
     "githubUrl": "https://github.com/Mahdimaju/wayang_v1",
@@ -28,68 +38,17 @@
     "updatedAt": "2026-11-16T03:35:19.682Z"
   },
   {
-    "id": "sewa-banjarmasin",
-    "title": "SewaLokal Banjarmasin",
-    "summary": "Platform sewa barang dan peralatan lokal Banjarmasin dengan katalog produk, rak pribadi, pencarian, dan fitur pasang iklan.",
-    "description": "Aplikasi web katalog penyewaan peralatan harian di Banjarmasin yang memungkinkan pengguna menjelajahi katalog barang, menyimpan daftar favorit, mengelola rak pribadi, hingga memasang iklan barang untuk disewakan.",
-    "category": "Web App",
-    "techStack": ["HTML5", "Tailwind CSS", "JavaScript"],
-    "thumbnailUrl": "/images/projects/vercel-sewalokal.svg",
-    "liveUrl": "https://renthtml.vercel.app",
-    "githubUrl": "https://github.com/Mahdimaju/Renthtml",
-    "featured": false,
-    "createdAt": "2026-07-15T06:52:23.772Z",
-    "updatedAt": "2026-10-23T09:23:45.377Z"
-  },
-  {
-    "id": "website-hmjti",
-    "title": "Website Resmi HMJTI",
-    "summary": "Portal resmi Himpunan Mahasiswa Jurusan Teknologi Informasi berisi profil, program kerja, kepengurusan, berita, dan aspirasi.",
-    "description": "Website organisasi mahasiswa Teknologi Informasi (HMJTI) yang memuat informasi sejarah, visi dan misi, AD/ART, struktur kepengurusan, agenda event, galeri dokumentasi, layanan akademik, serta formulir aspirasi mahasiswa.",
-    "category": "Tugas Kuliah",
-    "techStack": ["HTML5", "CSS3", "JavaScript", "Font Awesome"],
-    "thumbnailUrl": "/images/projects/vercel-hmjti.svg",
-    "liveUrl": "https://tes-hmjti.vercel.app",
-    "githubUrl": "https://github.com/Mahdimaju/TES-HMJTI",
-    "featured": false,
-    "createdAt": "2026-05-25T10:24:47.983Z",
-    "updatedAt": "2026-05-25T14:09:15.573Z"
-  },
-  {
-    "id": "ecommerce-prompt-generator",
-    "title": "E-Commerce Prompt Generator",
-    "summary": "Alat interaktif untuk menyusun prompt pembuatan website toko online satu halaman yang siap disalin ke asisten AI.",
-    "description": "Web tool praktis bagi pelaku UMKM dan developer untuk membentuk prompt terstruktur pembuatan landing page e-commerce berdasarkan informasi brand, produk, dan gaya tampilan, lengkap dengan validasi input dan tombol salin cepat.",
-    "category": "Web App",
-    "techStack": ["HTML5", "Bootstrap", "JavaScript"],
-    "thumbnailUrl": "/images/projects/vercel-jb-generator.svg",
-    "liveUrl": "https://jb-generator.vercel.app",
-    "githubUrl": "https://github.com/Mahdimaju/JB_Generator",
-    "featured": false,
-    "createdAt": "2026-06-12T14:15:44.459Z",
-    "updatedAt": "2026-06-12T14:15:50.223Z"
-  },
-  {
-    "id": "wedding-jainudin-hijriah",
-    "title": "The Wedding of Jainudin & Hijriah",
-    "summary": "Undangan pernikahan digital responsif dengan tata letak editorial, detail acara, dan navigasi tamu berbasis web.",
-    "description": "Website undangan pernikahan digital yang dirancang khusus untuk acara Jainudin & Hijriah, menghadirkan jadwal acara, lokasi, galeri, dan tampilan responsif untuk perangkat mobile maupun desktop.",
-    "category": "UI/UX",
-    "techStack": ["HTML5", "Tailwind CSS", "JavaScript"],
-    "thumbnailUrl": "/images/projects/vercel-wedding-jh.svg",
-    "liveUrl": "https://the-wedding-of-jainudin-hijriah.vercel.app",
-    "githubUrl": "https://github.com/Mahdimaju/The-Wedding-of-Jainudin-Hijriah",
-    "featured": false,
-    "createdAt": "2026-06-25T12:21:15.497Z",
-    "updatedAt": "2026-10-27T13:22:59.800Z"
-  },
-  {
     "id": "theme-5-ultah",
     "title": "Undangan Ulang Tahun (Theme 5)",
     "summary": "Undangan ulang tahun digital interaktif dengan efek konfeti kanvas, audio latar, dan peta lokasi terintegrasi.",
     "description": "Template undangan ulang tahun ke-10 Keinzyy Laland bertema ceria yang dilengkapi animasi canvas-confetti, pemutar musik latar, nama tamu dinamis, serta embed Google Maps lokasi acara.",
     "category": "UI/UX",
-    "techStack": ["HTML5", "Tailwind CSS", "Canvas Confetti", "JavaScript"],
+    "techStack": [
+      "HTML5",
+      "Tailwind CSS",
+      "Canvas Confetti",
+      "JavaScript"
+    ],
     "thumbnailUrl": "/images/projects/vercel-ultah-5.svg",
     "liveUrl": "https://theme-5-ultah.vercel.app",
     "githubUrl": "https://github.com/Mahdimaju/theme-5-ultah",
@@ -98,12 +57,52 @@
     "updatedAt": "2026-11-16T03:57:46.315Z"
   },
   {
+    "id": "sewa-banjarmasin",
+    "title": "SewaLokal Banjarmasin",
+    "summary": "Platform sewa barang dan peralatan lokal Banjarmasin dengan katalog produk, rak pribadi, pencarian, dan fitur pasang iklan.",
+    "description": "Aplikasi web katalog penyewaan peralatan harian di Banjarmasin yang memungkinkan pengguna menjelajahi katalog barang, menyimpan daftar favorit, mengelola rak pribadi, hingga memasang iklan barang untuk disewakan.",
+    "category": "Web App",
+    "techStack": [
+      "HTML5",
+      "Tailwind CSS",
+      "JavaScript"
+    ],
+    "thumbnailUrl": "/images/projects/vercel-sewalokal.svg",
+    "liveUrl": "https://renthtml.vercel.app",
+    "githubUrl": "https://github.com/Mahdimaju/Renthtml",
+    "featured": false,
+    "createdAt": "2026-07-15T06:52:23.772Z",
+    "updatedAt": "2026-10-23T09:23:45.377Z"
+  },
+  {
+    "id": "wedding-jainudin-hijriah",
+    "title": "The Wedding of Jainudin & Hijriah",
+    "summary": "Undangan pernikahan digital responsif dengan tata letak editorial, detail acara, dan navigasi tamu berbasis web.",
+    "description": "Website undangan pernikahan digital yang dirancang khusus untuk acara Jainudin & Hijriah, menghadirkan jadwal acara, lokasi, galeri, dan tampilan responsif untuk perangkat mobile maupun desktop.",
+    "category": "UI/UX",
+    "techStack": [
+      "HTML5",
+      "Tailwind CSS",
+      "JavaScript"
+    ],
+    "thumbnailUrl": "/images/projects/vercel-wedding-jh.svg",
+    "liveUrl": "https://the-wedding-of-jainudin-hijriah.vercel.app",
+    "githubUrl": "https://github.com/Mahdimaju/The-Wedding-of-Jainudin-Hijriah",
+    "featured": false,
+    "createdAt": "2026-06-25T12:21:15.497Z",
+    "updatedAt": "2026-10-27T13:22:59.800Z"
+  },
+  {
     "id": "wed-cth-3",
     "title": "Template Undangan Pernikahan v3",
     "summary": "Eksplorasi desain undangan pernikahan digital tema 3 dengan fokus tipografi elegan dan tata letak responsif.",
     "description": "Seri katalog template undangan pernikahan digital versi 3 (Dimas & Sarah) yang dibangun menggunakan Tailwind CSS untuk mendemonstrasikan variasi tata letak visual dan pengalaman tamu di layar ponsel.",
     "category": "UI/UX",
-    "techStack": ["HTML5", "Tailwind CSS", "JavaScript"],
+    "techStack": [
+      "HTML5",
+      "Tailwind CSS",
+      "JavaScript"
+    ],
     "thumbnailUrl": "/images/projects/vercel-wed-3.svg",
     "liveUrl": "https://wed-cth-3.vercel.app",
     "githubUrl": "https://github.com/Mahdimaju/WED-CTH-3",
@@ -117,7 +116,11 @@
     "summary": "Variasi tema kedua undangan pernikahan web dengan komponen ikon Font Awesome dan struktur bagian acara rapi.",
     "description": "Seri katalog template undangan pernikahan digital versi 2 yang memadukan Tailwind CSS dan Font Awesome untuk menyajikan detail akad, resepsi, serta navigasi cepat pada perangkat mobile.",
     "category": "UI/UX",
-    "techStack": ["HTML5", "Tailwind CSS", "Font Awesome"],
+    "techStack": [
+      "HTML5",
+      "Tailwind CSS",
+      "Font Awesome"
+    ],
     "thumbnailUrl": "/images/projects/vercel-wed-2.svg",
     "liveUrl": "https://wed-cth-2.vercel.app",
     "githubUrl": "https://github.com/Mahdimaju/WED-CTH-2",
@@ -131,7 +134,11 @@
     "summary": "Template perdana seri undangan pernikahan web dengan fokus alur baca mobile-first dan susunan informasi jelas.",
     "description": "Seri katalog template undangan pernikahan digital versi 1 (Dimas & Sarah) yang dirancang sebagai dasar desain undangan web ringan menggunakan Tailwind CSS dan Font Awesome.",
     "category": "UI/UX",
-    "techStack": ["HTML5", "Tailwind CSS", "Font Awesome"],
+    "techStack": [
+      "HTML5",
+      "Tailwind CSS",
+      "Font Awesome"
+    ],
     "thumbnailUrl": "/images/projects/vercel-wed-1.svg",
     "liveUrl": "https://wed-cth-1.vercel.app",
     "githubUrl": "https://github.com/Mahdimaju/WED-CTH-1",
@@ -140,12 +147,53 @@
     "updatedAt": "2026-06-24T00:49:46.304Z"
   },
   {
+    "id": "ecommerce-prompt-generator",
+    "title": "E-Commerce Prompt Generator",
+    "summary": "Alat interaktif untuk menyusun prompt pembuatan website toko online satu halaman yang siap disalin ke asisten AI.",
+    "description": "Web tool praktis bagi pelaku UMKM dan developer untuk membentuk prompt terstruktur pembuatan landing page e-commerce berdasarkan informasi brand, produk, dan gaya tampilan, lengkap dengan validasi input dan tombol salin cepat.",
+    "category": "Web App",
+    "techStack": [
+      "HTML5",
+      "Bootstrap",
+      "JavaScript"
+    ],
+    "thumbnailUrl": "/images/projects/vercel-jb-generator.svg",
+    "liveUrl": "https://jb-generator.vercel.app",
+    "githubUrl": "https://github.com/Mahdimaju/JB_Generator",
+    "featured": false,
+    "createdAt": "2026-06-12T14:15:44.459Z",
+    "updatedAt": "2026-06-12T14:15:50.223Z"
+  },
+  {
+    "id": "interactive-valentine-card",
+    "title": "Interactive Valentine Card",
+    "summary": "Halaman kartu ucapan interaktif ringan dengan mikro-interaksi tombol dinamis menggunakan HTML, CSS, dan JavaScript.",
+    "description": "Mini web eksperimen interaksi UI untuk melatih manipulasi DOM JavaScript, animasi transisi CSS, dan deployment cepat ke Vercel.",
+    "category": "3D / Interaktif",
+    "techStack": [
+      "HTML5",
+      "CSS3",
+      "JavaScript"
+    ],
+    "thumbnailUrl": "/images/projects/vercel-valentine.svg",
+    "liveUrl": "https://mie-ayam-phi.vercel.app",
+    "githubUrl": "https://github.com/Mahdimaju/mie-ayam",
+    "featured": false,
+    "createdAt": "2026-02-12T15:07:45.473Z",
+    "updatedAt": "2026-05-24T08:05:15.543Z"
+  },
+  {
     "id": "portfolio-v1",
     "title": "Personal Portfolio v1",
     "summary": "Website portofolio generasi pertama milik Mahdi berisi profil mahasiswa IT Universitas Sari Mulia, layanan, dan pengalaman.",
     "description": "Iterasi awal website portofolio pribadi yang menampilkan perkenalan diri, keahlian pengembangan aplikasi dan desain grafis, riwayat pendidikan, serta tautan kontak.",
     "category": "Tugas Kuliah",
-    "techStack": ["HTML5", "CSS3", "JavaScript", "Font Awesome"],
+    "techStack": [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Font Awesome"
+    ],
     "thumbnailUrl": "/images/projects/vercel-portfolio-v1.svg",
     "liveUrl": "https://portfolio-inky-beta-37.vercel.app",
     "githubUrl": "https://github.com/Mahdimaju/portfolio",
@@ -159,7 +207,11 @@
     "summary": "Eksperimen animasi bunga mekar interaktif di browser menggunakan CSS keyframes dan JavaScript murni.",
     "description": "Proyek creative coding ringan yang merender animasi bunga mekar secara prosedural dengan CSS dan interaksi pemicu klik di browser tanpa pustaka eksternal.",
     "category": "3D / Interaktif",
-    "techStack": ["HTML5", "CSS3", "JavaScript"],
+    "techStack": [
+      "HTML5",
+      "CSS3",
+      "JavaScript"
+    ],
     "thumbnailUrl": "/images/projects/vercel-flowers.svg",
     "liveUrl": "https://gabuttttt.vercel.app",
     "githubUrl": "https://github.com/Mahdimaju/gabuttttt",
@@ -168,26 +220,16 @@
     "updatedAt": "2026-05-18T05:44:10.182Z"
   },
   {
-    "id": "interactive-valentine-card",
-    "title": "Interactive Valentine Card",
-    "summary": "Halaman kartu ucapan interaktif ringan dengan mikro-interaksi tombol dinamis menggunakan HTML, CSS, dan JavaScript.",
-    "description": "Mini web eksperimen interaksi UI untuk melatih manipulasi DOM JavaScript, animasi transisi CSS, dan deployment cepat ke Vercel.",
-    "category": "3D / Interaktif",
-    "techStack": ["HTML5", "CSS3", "JavaScript"],
-    "thumbnailUrl": "/images/projects/vercel-valentine.svg",
-    "liveUrl": "https://mie-ayam-phi.vercel.app",
-    "githubUrl": "https://github.com/Mahdimaju/mie-ayam",
-    "featured": false,
-    "createdAt": "2026-02-12T15:07:45.473Z",
-    "updatedAt": "2026-05-24T08:05:15.543Z"
-  },
-  {
     "id": "wedding-web-concept",
     "title": "Wedding Web Concept",
     "summary": "Prototipe awal halaman undangan pernikahan berbasis Bootstrap sebagai latihan layout grid responsif.",
     "description": "Konsep awal website undangan pernikahan menggunakan framework Bootstrap untuk mempraktikkan komponen navigasi, kartu jadwal acara, dan responsivitas layar.",
     "category": "Tugas Kuliah",
-    "techStack": ["HTML5", "Bootstrap", "JavaScript"],
+    "techStack": [
+      "HTML5",
+      "Bootstrap",
+      "JavaScript"
+    ],
     "thumbnailUrl": "/images/projects/vercel-test-wed.svg",
     "liveUrl": "https://test-wed-iota.vercel.app",
     "githubUrl": "https://github.com/Mahdimaju/test-wed",
