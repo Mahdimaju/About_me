@@ -3,45 +3,10 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-import { useIsTouchDevice, usePrefersReducedMotion } from "@/components/ui/useReducedMotion";
-
-const ECLIPSE_VERTEX = `
-  varying vec2 vUv;
-  void main() {
-    vUv = uv;
-    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-  }
-`;
-
-const ECLIPSE_FRAGMENT = `
-  uniform float uTime;
-  varying vec2 vUv;
-
-  void main() {
-    vec2 centered = (vUv - 0.5) * 2.0;
-    float r = length(centered);
-    float angle = atan(centered.y, centered.x);
-
-    float wobble = sin(angle * 6.0 + uTime * 0.9) * 0.008 +
-                   cos(angle * 11.0 - uTime * 1.4) * 0.005;
-    float ringDist = abs(r - (0.64 + wobble));
-
-    float core = smoothstep(0.036, 0.0, ringDist);
-    float corona = exp(-ringDist * 11.0) * 0.85;
-    float outerAura = exp(-ringDist * 4.5) * 0.35;
-
-    float pulse = 0.88 + 0.12 * sin(uTime * 1.5);
-    vec3 colorCore = vec3(1.0, 0.90, 0.65);
-    vec3 colorEmber = vec3(1.0, 0.34, 0.04);
-    vec3 colorCrimson = vec3(0.62, 0.12, 0.0);
-
-    vec3 col = colorCrimson * outerAura + colorEmber * corona + colorCore * core;
-    float alpha = clamp((core + corona * 0.9 + outerAura * 0.6) * pulse, 0.0, 0.95);
-    if (r > 0.98) alpha *= smoothstep(1.0, 0.92, r);
-
-    gl_FragColor = vec4(col, alpha);
-  }
-`;
+import {
+  useIsTouchDevice,
+  usePrefersReducedMotion,
+} from "@/components/ui/useReducedMotion";
 
 interface ShardSpec {
   position: [number, number, number];
@@ -61,22 +26,14 @@ const SHARDS: ShardSpec[] = [
   { position: [4.15, -1.25, -0.3], scale: [0.3, 0.48, 0.25], rotation: [1.2, 0.6, 0.3], speed: 0.36, phase: 2.8 },
 ];
 
-function EclipseAndShards({
+function ObsidianShardsAndEmbers({
   pointerRef,
 }: {
   pointerRef: React.RefObject<{ x: number; y: number }>;
 }) {
   const groupRef = useRef<THREE.Group>(null);
-  const shaderMatRef = useRef<THREE.ShaderMaterial>(null);
   const shardsRef = useRef<(THREE.Group | null)[]>([]);
   const particlesRef = useRef<THREE.Points>(null);
-
-  const initialUniforms = useMemo(
-    () => ({
-      uTime: { value: 0 },
-    }),
-    []
-  );
 
   const shardGeometry = useMemo(() => new THREE.OctahedronGeometry(1, 0), []);
   const shardEdges = useMemo(
@@ -108,10 +65,6 @@ function EclipseAndShards({
 
   useFrame((state, delta) => {
     const t = state.clock.getElapsedTime();
-    if (shaderMatRef.current) {
-      shaderMatRef.current.uniforms.uTime.value = t;
-    }
-
     const px = pointerRef.current?.x ?? 0;
     const py = pointerRef.current?.y ?? 0;
 
@@ -163,22 +116,18 @@ function EclipseAndShards({
   return (
     <group ref={groupRef}>
       <ambientLight intensity={0.28} />
-      <pointLight position={[1.8, 0.8, 2.5]} intensity={14} color="#ff5500" distance={12} />
-      <pointLight position={[3.4, -1.4, 2.2]} intensity={8} color="#ffa23a" distance={10} />
-
-      {/* Subtle 3D Luminous Solar Eclipse Corona aligned with Hero visual */}
-      <mesh position={[1.65, 0.55, -0.8]} rotation={[0, -0.08, 0]}>
-        <planeGeometry args={[4.45, 4.45]} />
-        <shaderMaterial
-          ref={shaderMatRef}
-          vertexShader={ECLIPSE_VERTEX}
-          fragmentShader={ECLIPSE_FRAGMENT}
-          uniforms={initialUniforms}
-          transparent
-          depthWrite={false}
-          blending={THREE.AdditiveBlending}
-        />
-      </mesh>
+      <pointLight
+        position={[1.8, 0.8, 2.5]}
+        intensity={14}
+        color="#ff5500"
+        distance={12}
+      />
+      <pointLight
+        position={[3.4, -1.4, 2.2]}
+        intensity={8}
+        color="#ffa23a"
+        distance={10}
+      />
 
       {/* Orbiting Faceted Obsidian Shards with Ember Rim Wireframe */}
       {SHARDS.map((shard, index) => (
@@ -244,7 +193,10 @@ export function Hero3DScene({ paused = false }: { paused?: boolean }) {
   useEffect(() => {
     const onPointerMove = (e: PointerEvent) => {
       pointerRef.current.x = (e.clientX / Math.max(window.innerWidth, 1)) * 2 - 1;
-      pointerRef.current.y = -((e.clientY / Math.max(window.innerHeight, 1)) * 2 - 1);
+      pointerRef.current.y = -(
+        (e.clientY / Math.max(window.innerHeight, 1)) * 2 -
+        1
+      );
     };
     const onVisibility = () => setTabVisible(!document.hidden);
 
@@ -294,7 +246,7 @@ export function Hero3DScene({ paused = false }: { paused?: boolean }) {
           });
         }}
       >
-        <EclipseAndShards pointerRef={pointerRef} />
+        <ObsidianShardsAndEmbers pointerRef={pointerRef} />
       </Canvas>
     </div>
   );
