@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" fill="#070606"/>
+  <radialGradient id="g1" cx="50%" cy="20%" r="70%">
+    <stop offset="0%" stop-color="#FF4D00" stop-opacity="0.22"/>
+    <stop offset="100%" stop-color="#070606" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="800" height="500" fill="url(#g1)"/>
+  <rect x="48" y="44" width="704" height="412" rx="18" fill="#0D0B0A" stroke="#FF4D00" stroke-opacity="0.32" stroke-width="1.5"/>
+  <rect x="84" y="82" width="110" height="68" rx="12" fill="#FF4D00"/>
+  <rect x="210" y="82" width="110" height="68" rx="12" fill="#FFA23A"/>
+  <rect x="336" y="82" width="110" height="68" rx="12" fill="#FFE4A3"/>
+  <rect x="462" y="82" width="110" height="68" rx="12" fill="#161210" stroke="#FFFFFF" stroke-opacity="0.16"/>
+  <rect x="588" y="82" width="128" height="68" rx="12" fill="#050506" stroke="#FF4D00" stroke-opacity="0.5"/>
+  <rect x="84" y="184" width="632" height="106" rx="14" fill="#120E0C" stroke="#FFFFFF" stroke-opacity="0.08"/>
+  <rect x="112" y="210" width="260" height="18" rx="5" fill="#F5F2EE"/>
+  <rect x="112" y="242" width="190" height="10" rx="4" fill="#FF4D00"/>
+  <rect x="112" y="262" width="380" height="8" rx="4" fill="#877B73"/>
+  <rect x="84" y="320" width="188" height="48" rx="24" fill="#FF4D00"/>
+  <circle cx="246" cy="344" r="16" fill="#090706"/>
+  <rect x="292" y="320" width="176" height="48" rx="24" fill="#161210" stroke="#FF4D00" stroke-opacity="0.5"/>
+  <circle cx="442" cy="344" r="5" fill="#FF4D00"/>
+  <rect x="488" y="320" width="228" height="48" rx="12" fill="#161210" stroke="#FF4D00" stroke-width="1.5"/>
+  <rect x="508" y="339" width="124" height="10" rx="4" fill="#B8ADA5"/>
+</svg>
