@@ -67,10 +67,11 @@ function EclipseAndShards({
   pointerRef: React.RefObject<{ x: number; y: number }>;
 }) {
   const groupRef = useRef<THREE.Group>(null);
+  const shaderMatRef = useRef<THREE.ShaderMaterial>(null);
   const shardsRef = useRef<(THREE.Group | null)[]>([]);
   const particlesRef = useRef<THREE.Points>(null);
 
-  const eclipseUniforms = useMemo(
+  const initialUniforms = useMemo(
     () => ({
       uTime: { value: 0 },
     }),
@@ -107,7 +108,9 @@ function EclipseAndShards({
 
   useFrame((state, delta) => {
     const t = state.clock.getElapsedTime();
-    eclipseUniforms.uTime.value = t;
+    if (shaderMatRef.current) {
+      shaderMatRef.current.uniforms.uTime.value = t;
+    }
 
     const px = pointerRef.current?.x ?? 0;
     const py = pointerRef.current?.y ?? 0;
@@ -167,9 +170,10 @@ function EclipseAndShards({
       <mesh position={[1.65, 0.55, -0.8]} rotation={[0, -0.08, 0]}>
         <planeGeometry args={[4.45, 4.45]} />
         <shaderMaterial
+          ref={shaderMatRef}
           vertexShader={ECLIPSE_VERTEX}
           fragmentShader={ECLIPSE_FRAGMENT}
-          uniforms={eclipseUniforms}
+          uniforms={initialUniforms}
           transparent
           depthWrite={false}
           blending={THREE.AdditiveBlending}

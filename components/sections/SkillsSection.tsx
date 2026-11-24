@@ -7,12 +7,12 @@ import {
   Code2,
   Cpu,
   Database,
-  Figma,
   FileCode2,
   GitBranch,
   Globe,
   Layers,
   Palette,
+  PenTool,
   Server,
   Sparkles,
   Terminal,
@@ -60,7 +60,7 @@ function SkillIcon({ name }: { name: string }) {
     case "git":
       return <GitBranch className={cls} />;
     case "figma":
-      return <Figma className={cls} />;
+      return <PenTool className={cls} />;
     case "vercel":
       return <Triangle className={cls} />;
     case "terminal":

@@ -5,7 +5,14 @@
     "summary": "Portofolio WebGL imersif dengan cincin gerhana 3D React Three Fiber & shader riak air obsidian.",
     "description": "Dirancang dengan arsitektur Next.js 16 App Router, React Three Fiber, dan custom GLSL wave shader untuk menghadirkan cincin gerhana matahari 3D serta riak air obsidian cair di 60 FPS, lengkap dengan sistem manajemen proyek mandiri tervalidasi Zod dan proteksi HTTP-only cookie.",
     "category": "3D / Interaktif",
-    "techStack": ["Next.js", "Three.js", "GLSL", "Tailwind", "React 19", "Zod"],
+    "techStack": [
+      "Next.js",
+      "Three.js",
+      "GLSL",
+      "Tailwind",
+      "React 19",
+      "Zod"
+    ],
     "thumbnailUrl": "/images/projects/solar-eclipse-3d.png",
     "liveUrl": "https://mahdi-3d.vercel.app",
     "githubUrl": "https://github.com/mahdi-dev/about-me",
@@ -19,7 +26,12 @@
     "summary": "Dashboard manajemen tugas kuliah & analitik progres real-time dengan REST API & validasi Zod.",
     "description": "Aplikasi web full-stack untuk memantau jadwal mata kuliah, tenggat tugas, distribusi SKS, dan tren indeks prestasi mahasiswa. Dilengkapi filter kategori dinamis, grafik progres interaktif, serta backend API yang tervalidasi skema ketat.",
     "category": "Web App",
-    "techStack": ["Next.js", "TypeScript", "Prisma", "SQLite"],
+    "techStack": [
+      "Next.js",
+      "TypeScript",
+      "Prisma",
+      "SQLite"
+    ],
     "thumbnailUrl": "/images/projects/nebula-campus-analytics.png",
     "liveUrl": "https://nebula-campus.vercel.app",
     "githubUrl": "https://github.com/mahdi-dev/nebula-campus",
@@ -33,7 +45,12 @@
     "summary": "Eksperimen simulasi gelombang air 2D berbasis GLSL shader dengan kontrol parameter langsung.",
     "description": "Laboratorium grafika komputer interaktif untuk tugas mata kuliah yang mendemonstrasikan refraksi gelombang, peredaman eksponensial, dan sorotan caustics menggunakan WebGL fragment shader dan antarmuka kontrol parameter real-time.",
     "category": "Tugas Kuliah",
-    "techStack": ["WebGL", "GLSL", "React 19", "Motion"],
+    "techStack": [
+      "WebGL",
+      "GLSL",
+      "React 19",
+      "Motion"
+    ],
     "thumbnailUrl": "/images/projects/liquid-obsidian-shader.png",
     "liveUrl": "https://obsidian-shader.vercel.app",
     "githubUrl": "https://github.com/mahdi-dev/liquid-obsidian-lab",
@@ -47,7 +64,12 @@
     "summary": "Sistem komponen UI dark-mode berstandar kontras WCAG AA dengan dokumentasi token Tailwind v4.",
     "description": "Koleksi komponen antarmuka modular mencakup tombol kapsul, modal aksesibel, formulir tervalidasi, dan palet warna bertema obsidian-oranye yang dirancang di Figma lalu diimplementasikan dalam Tailwind CSS v4.",
     "category": "UI/UX",
-    "techStack": ["Figma", "Tailwind CSS", "TypeScript", "Motion"],
+    "techStack": [
+      "Figma",
+      "Tailwind CSS",
+      "TypeScript",
+      "Motion"
+    ],
     "thumbnailUrl": "/images/projects/ember-design-system.svg",
     "liveUrl": "https://ember-ui.vercel.app",
     "githubUrl": "https://github.com/mahdi-dev/ember-design-system",
@@ -61,7 +83,12 @@
     "summary": "Perencana jadwal kuliah otomatis dengan deteksi bentrok kelas & ekspor kalender mahasiswa.",
     "description": "Proyek tugas pemrograman web untuk membantu mahasiswa menyusun rencana studi semester tanpa jadwal bentrok. Mendukung pencarian mata kuliah cepat, pratinjau kalender mingguan, dan penyimpanan lokal.",
     "category": "Tugas Kuliah",
-    "techStack": ["React", "TypeScript", "Tailwind CSS", "Node.js"],
+    "techStack": [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Node.js"
+    ],
     "thumbnailUrl": "/images/projects/krs-smart-planner.svg",
     "liveUrl": "https://krs-planner.vercel.app",
     "githubUrl": "https://github.com/mahdi-dev/krs-smart-planner",
@@ -75,7 +102,12 @@
     "summary": "Klien pengujian endpoint REST API ringan di browser dengan riwayat request & format JSON.",
     "description": "Alat bantu developer berbasis web untuk menguji endpoint GET, POST, PATCH, dan DELETE secara cepat, melihat status HTTP, header respons, serta menyalin potongan kode fetch secara instan.",
     "category": "Web App",
-    "techStack": ["Next.js", "TypeScript", "REST API", "Zod"],
+    "techStack": [
+      "Next.js",
+      "TypeScript",
+      "REST API",
+      "Zod"
+    ],
     "thumbnailUrl": "/images/projects/aurora-api-workbench.svg",
     "liveUrl": "https://aurora-api.vercel.app",
     "githubUrl": "https://github.com/mahdi-dev/aurora-api-workbench",
