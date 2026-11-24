@@ -1,11 +1,13 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
+import { get as getBlob, put as putBlob } from "@vercel/blob";
 import type { ContactMessage, Project, ProjectInput } from "./types";
 
 const DATA_DIR = path.join(process.cwd(), "data");
 const PROJECTS_FILE = path.join(DATA_DIR, "projects.json");
 const MESSAGES_FILE = path.join(DATA_DIR, "messages.json");
+const BLOB_PROJECTS_PATH = "portfolio-data/projects.json";
 
 let writeQueue = Promise.resolve();
 
@@ -18,24 +20,69 @@ function serializeWrite<T>(task: () => Promise<T>): Promise<T> {
   return next;
 }
 
-export async function readProjects(): Promise<Project[]> {
+function isBlobStorageEnabled(): boolean {
+  return Boolean(
+    process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID
+  );
+}
+
+function sortProjects(projects: Project[]): Project[] {
+  return [...projects].sort((a, b) => {
+    if (a.featured !== b.featured) return a.featured ? -1 : 1;
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  });
+}
+
+async function readLocalSeedProjects(): Promise<Project[]> {
   try {
     const raw = await fs.readFile(PROJECTS_FILE, "utf-8");
     const parsed = JSON.parse(raw) as Project[];
-    if (!Array.isArray(parsed)) return [];
-    return parsed.sort((a, b) => {
-      if (a.featured !== b.featured) return a.featured ? -1 : 1;
-      return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-    });
+    return Array.isArray(parsed) ? parsed : [];
   } catch {
     return [];
   }
 }
 
-async function writeProjectsFile(projects: Project[]): Promise<void> {
+export async function readProjects(): Promise<Project[]> {
+  if (isBlobStorageEnabled()) {
+    try {
+      const result = await getBlob(BLOB_PROJECTS_PATH, {
+        access: "public",
+        useCache: false,
+      });
+      if (result && result.statusCode === 200 && result.stream) {
+        const text = await new Response(result.stream).text();
+        const parsed = JSON.parse(text) as Project[];
+        if (Array.isArray(parsed)) {
+          return sortProjects(parsed);
+        }
+      }
+    } catch {
+      // Fall back to bundled local seed on first boot before any write
+    }
+  }
+
+  const local = await readLocalSeedProjects();
+  return sortProjects(local);
+}
+
+async function persistProjects(projects: Project[]): Promise<void> {
+  const payload = JSON.stringify(projects, null, 2);
+
+  if (isBlobStorageEnabled()) {
+    await putBlob(BLOB_PROJECTS_PATH, payload, {
+      access: "public",
+      contentType: "application/json",
+      addRandomSuffix: false,
+      allowOverwrite: true,
+      cacheControlMaxAge: 60,
+    });
+    return;
+  }
+
   await fs.mkdir(DATA_DIR, { recursive: true });
   const tempPath = `${PROJECTS_FILE}.tmp`;
-  await fs.writeFile(tempPath, JSON.stringify(projects, null, 2), "utf-8");
+  await fs.writeFile(tempPath, payload, "utf-8");
   await fs.rename(tempPath, PROJECTS_FILE);
 }
 
@@ -66,7 +113,7 @@ export async function createProject(input: ProjectInput): Promise<Project> {
     };
 
     projects.unshift(project);
-    await writeProjectsFile(projects);
+    await persistProjects(projects);
     return project;
   });
 }
@@ -104,7 +151,7 @@ export async function updateProject(
     };
 
     projects[index] = updated;
-    await writeProjectsFile(projects);
+    await persistProjects(projects);
     return updated;
   });
 }
@@ -114,7 +161,7 @@ export async function deleteProject(id: string): Promise<boolean> {
     const projects = await readProjects();
     const filtered = projects.filter((item) => item.id !== id);
     if (filtered.length === projects.length) return false;
-    await writeProjectsFile(filtered);
+    await persistProjects(filtered);
     return true;
   });
 }
@@ -123,6 +170,22 @@ export async function saveContactMessage(
   entry: Omit<ContactMessage, "id" | "createdAt">
 ): Promise<ContactMessage> {
   return serializeWrite(async () => {
+    const record: ContactMessage = {
+      id: `msg-${crypto.randomBytes(4).toString("hex")}`,
+      ...entry,
+      createdAt: new Date().toISOString(),
+    };
+
+    // Serverless filesystem on Vercel is read-only; log safely in production
+    if (process.env.VERCEL) {
+      console.info("[contact-message]", {
+        id: record.id,
+        subject: record.subject,
+        createdAt: record.createdAt,
+      });
+      return record;
+    }
+
     await fs.mkdir(DATA_DIR, { recursive: true });
     let messages: ContactMessage[] = [];
     try {
@@ -133,11 +196,6 @@ export async function saveContactMessage(
       messages = [];
     }
 
-    const record: ContactMessage = {
-      id: `msg-${crypto.randomBytes(4).toString("hex")}`,
-      ...entry,
-      createdAt: new Date().toISOString(),
-    };
     messages.unshift(record);
     await fs.writeFile(MESSAGES_FILE, JSON.stringify(messages, null, 2), "utf-8");
     return record;

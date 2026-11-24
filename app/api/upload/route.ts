@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import crypto from "node:crypto";
+import { put as putBlob } from "@vercel/blob";
 import { NextResponse } from "next/server";
 import { isAdminAuthenticated } from "@/lib/auth";
 
@@ -78,9 +79,19 @@ export async function POST(request: Request) {
       );
     }
 
+    const filename = `thumb-${Date.now()}-${crypto.randomBytes(4).toString("hex")}${ext}`;
+
+    if (process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID) {
+      const blob = await putBlob(`uploads/${filename}`, buffer, {
+        access: "public",
+        contentType: file.type,
+        addRandomSuffix: false,
+      });
+      return NextResponse.json({ url: blob.url }, { status: 201 });
+    }
+
     const uploadsDir = path.join(process.cwd(), "public", "uploads");
     await fs.mkdir(uploadsDir, { recursive: true });
-    const filename = `thumb-${Date.now()}-${crypto.randomBytes(4).toString("hex")}${ext}`;
     const destPath = path.join(uploadsDir, filename);
     await fs.writeFile(destPath, buffer);
 
