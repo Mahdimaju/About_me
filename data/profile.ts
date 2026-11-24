@@ -4,12 +4,12 @@ export const profile = {
   monogram: "M",
   brandSub: "PORTFOLIO.3D",
   role: "Mahasiswa IT & Web Developer",
-  university: "S1 Teknologi Informasi",
+  university: "S1 Teknologi Informasi, Universitas Sari Mulia",
   semester: "Semester 3",
   semesterShort: "SEM 3",
   focusArea: "Full-Stack & Creative Frontend",
-  focusTools: "Next.js App Router • Three.js • GLSL Shaders",
-  educationSub: "Semester 3 • Fokus Rekayasa Perangkat Lunak Web",
+  focusTools: "Next.js App Router, Three.js, GLSL Shaders",
+  educationSub: "Semester 3, Fokus Rekayasa Perangkat Lunak Web",
   availability: "Terbuka untuk Magang, Proyek Freelance & Kolaborasi Riset Web",
   heroEyebrowPrefix: "HALO, SAYA",
   heroHeadlineLine1: "SAYA MEMBANGUN",
@@ -21,7 +21,7 @@ export const profile = {
   aboutQuote:
     "Mengubah ide kompleks menjadi antarmuka web yang terasa hidup, memadukan estetika sinematik 3D dan arsitektur kode yang rapi.",
   aboutParagraphs: [
-    "Saya Mahdi, mahasiswa Teknologi Informasi Semester 3 yang memiliki ketertarikan mendalam pada pengembangan Full-Stack Web dan Creative Frontend. Saya senang mengeksplorasi batas visual browser modern melalui Next.js, Three.js, React Three Fiber, dan custom GLSL shaders.",
+    "Saya Mahdi, mahasiswa S1 Teknologi Informasi Semester 3 di Universitas Sari Mulia yang memiliki ketertarikan mendalam pada pengembangan Full-Stack Web dan Creative Frontend. Saya senang mengeksplorasi batas visual browser modern melalui Next.js, Three.js, React Three Fiber, dan custom GLSL shaders.",
     "Setiap proyek saya bangun dengan standar rekayasa modern: performa 60 FPS, aksesibilitas WCAG AA, arsitektur TypeScript yang ketat, serta sistem manajemen konten mandiri yang mudah dikembangkan.",
   ],
   heroImage: "/images/hero-mahdi.png",
@@ -31,8 +31,8 @@ export const profile = {
     {
       label: "GitHub",
       short: "GH",
-      handle: "github.com/mahdi-dev",
-      href: "https://github.com/mahdi-dev",
+      handle: "github.com/Mahdimaju",
+      href: "https://github.com/Mahdimaju",
     },
     {
       label: "LinkedIn",
@@ -48,7 +48,7 @@ export const profile = {
     },
   ],
   heroBadges: [
-    { code: "GH", title: "GitHub", href: "https://github.com/mahdi-dev", external: true },
+    { code: "GH", title: "GitHub Mahdimaju", href: "https://github.com/Mahdimaju", external: true },
     { code: "in", title: "LinkedIn", href: "https://linkedin.com/in/mahdi", external: true },
     { code: "N.", title: "Next.js 16", href: "#skills", accent: true },
     { code: "3D", title: "Three.js & WebGL", href: "#skills" },
