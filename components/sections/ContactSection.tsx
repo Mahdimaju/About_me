@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { profile } from "@/data/profile";
 import { contactFormSchema } from "@/lib/validators";
+import { BrandIcon } from "@/components/ui/BrandIcons";
 import { useToast } from "@/components/ui/ToastProvider";
 import { usePrefersReducedMotion } from "@/components/ui/useReducedMotion";
 
@@ -184,9 +185,10 @@ export function ContactSection() {
                   rel="noopener noreferrer"
                   className="group flex min-h-[46px] items-center gap-3 rounded-lg border border-white/[0.09] bg-surface px-4 py-3 transition-colors hover:border-ember/50 hover:bg-elevated focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember"
                 >
-                  <span className="font-mono text-xs font-semibold text-ember">
-                    {item.short}
-                  </span>
+                  <BrandIcon
+                    name={item.icon}
+                    className="h-4 w-4 shrink-0 text-ink-secondary group-hover:text-ember transition-colors"
+                  />
                   <span className="truncate text-xs text-ink-secondary group-hover:text-ink-primary transition-colors">
                     {item.handle}
                   </span>
@@ -195,10 +197,10 @@ export function ContactSection() {
 
               <a
                 href={`mailto:${profile.email}`}
-                className="group flex min-h-[46px] items-center justify-between gap-2 rounded-lg border border-white/[0.09] bg-surface px-4 py-3 transition-colors hover:border-ember/50 hover:bg-elevated focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember"
+                className="group sm:col-span-2 flex min-h-[46px] items-center justify-between gap-2 rounded-lg border border-white/[0.09] bg-surface px-4 py-3 transition-colors hover:border-ember/50 hover:bg-elevated focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember"
               >
                 <span className="inline-flex items-center gap-2.5 text-xs text-ink-secondary group-hover:text-ink-primary transition-colors">
-                  <Mail aria-hidden="true" className="h-3.5 w-3.5 text-ember" />
+                  <Mail aria-hidden="true" className="h-4 w-4 text-ember" />
                   <span>Buka Aplikasi Email</span>
                 </span>
                 <ArrowUpRight

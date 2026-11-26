@@ -1,3 +1,21 @@
+import type { BrandIconName } from "@/components/ui/BrandIcons";
+
+export interface SocialLink {
+  label: string;
+  icon: BrandIconName;
+  handle: string;
+  href: string;
+}
+
+export interface HeroBrandBadge {
+  icon: BrandIconName;
+  title: string;
+  href: string;
+  group: "social" | "tech";
+  external?: boolean;
+  accent?: boolean;
+}
+
 export const profile = {
   fullName: "Mahdi",
   shortName: "MAHDI",
@@ -30,29 +48,82 @@ export const profile = {
   socials: [
     {
       label: "GitHub",
-      short: "GH",
+      icon: "github",
       handle: "github.com/Mahdimaju",
       href: "https://github.com/Mahdimaju",
     },
     {
       label: "LinkedIn",
-      short: "in",
+      icon: "linkedin",
       handle: "linkedin.com/in/mahdi",
       href: "https://linkedin.com/in/mahdi",
     },
     {
       label: "Instagram",
-      short: "IG",
+      icon: "instagram",
       handle: "@mahdi.code",
       href: "https://instagram.com/mahdi.code",
     },
-  ],
+    {
+      label: "TikTok",
+      icon: "tiktok",
+      handle: "@mahdi.code",
+      href: "https://tiktok.com/@mahdi.code",
+    },
+  ] satisfies SocialLink[],
   heroBadges: [
-    { code: "GH", title: "GitHub Mahdimaju", href: "https://github.com/Mahdimaju", external: true },
-    { code: "in", title: "LinkedIn", href: "https://linkedin.com/in/mahdi", external: true },
-    { code: "N.", title: "Next.js 16", href: "#skills", accent: true },
-    { code: "3D", title: "Three.js & WebGL", href: "#skills" },
-    { code: "TS", title: "TypeScript 5", href: "#skills" },
-    { code: "TW", title: "Tailwind CSS v4", href: "#skills" },
-  ],
-} as const;
+    {
+      icon: "github",
+      title: "GitHub (Mahdimaju)",
+      href: "https://github.com/Mahdimaju",
+      group: "social",
+      external: true,
+    },
+    {
+      icon: "linkedin",
+      title: "LinkedIn",
+      href: "https://linkedin.com/in/mahdi",
+      group: "social",
+      external: true,
+    },
+    {
+      icon: "instagram",
+      title: "Instagram",
+      href: "https://instagram.com/mahdi.code",
+      group: "social",
+      external: true,
+    },
+    {
+      icon: "tiktok",
+      title: "TikTok",
+      href: "https://tiktok.com/@mahdi.code",
+      group: "social",
+      external: true,
+    },
+    {
+      icon: "nextjs",
+      title: "Next.js 16",
+      href: "#skills",
+      group: "tech",
+      accent: true,
+    },
+    {
+      icon: "threejs",
+      title: "Three.js & WebGL",
+      href: "#skills",
+      group: "tech",
+    },
+    {
+      icon: "typescript",
+      title: "TypeScript 5",
+      href: "#skills",
+      group: "tech",
+    },
+    {
+      icon: "tailwindcss",
+      title: "Tailwind CSS v4",
+      href: "#skills",
+      group: "tech",
+    },
+  ] satisfies HeroBrandBadge[],
+};

@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import { ArrowUpRight, Pause, Play } from "lucide-react";
 import { profile } from "@/data/profile";
 import { WaterRippleCanvas } from "@/components/canvas/WaterRippleCanvas";
+import { BrandIcon } from "@/components/ui/BrandIcons";
 import { usePrefersReducedMotion } from "@/components/ui/useReducedMotion";
 
 const Hero3DScene = dynamic(
@@ -189,30 +190,47 @@ export function HeroSection({ projectCount, skillCount }: HeroSectionProps) {
             </div>
           </motion.dl>
 
-          {/* Direct Links Row */}
-          <motion.div {...fadeUp(0.38)} className="mt-7 hidden sm:block">
+          {/* Official Brand Logos Row (Socials | Core Tech Stack) */}
+          <motion.div {...fadeUp(0.38)} className="mt-7">
             <div className="flex flex-wrap items-center gap-2">
-              {profile.heroBadges.map((badge) => (
-                <a
-                  key={badge.code}
-                  href={badge.href}
-                  target={"external" in badge && badge.external ? "_blank" : undefined}
-                  rel={
-                    "external" in badge && badge.external
-                      ? "noopener noreferrer"
-                      : undefined
-                  }
-                  title={badge.title}
-                  aria-label={badge.title}
-                  className={`flex h-9 w-9 items-center justify-center rounded-md border font-mono text-xs font-semibold transition-colors hover:border-ember/60 hover:text-ember focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember ${
-                    "accent" in badge && badge.accent
-                      ? "border-ember/45 bg-ember/12 text-ember"
-                      : "border-white/10 bg-surface text-ink-secondary"
-                  }`}
-                >
-                  {badge.code}
-                </a>
-              ))}
+              {profile.heroBadges
+                .filter((b) => b.group === "social")
+                .map((badge) => (
+                  <a
+                    key={badge.icon}
+                    href={badge.href}
+                    target={badge.external ? "_blank" : undefined}
+                    rel={badge.external ? "noopener noreferrer" : undefined}
+                    title={badge.title}
+                    aria-label={badge.title}
+                    className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 bg-surface text-ink-secondary transition-colors hover:border-ember/60 hover:text-ink-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember"
+                  >
+                    <BrandIcon name={badge.icon} className="h-[18px] w-[18px]" />
+                  </a>
+                ))}
+
+              <span
+                aria-hidden="true"
+                className="mx-1 hidden sm:inline-block h-5 w-[1px] bg-white/12"
+              />
+
+              {profile.heroBadges
+                .filter((b) => b.group === "tech")
+                .map((badge) => (
+                  <a
+                    key={badge.icon}
+                    href={badge.href}
+                    title={badge.title}
+                    aria-label={badge.title}
+                    className={`flex h-10 w-10 items-center justify-center rounded-lg border transition-colors hover:border-ember/60 hover:text-ember focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ember ${
+                      badge.accent
+                        ? "border-ember/45 bg-ember/12 text-ember"
+                        : "border-white/10 bg-surface text-ink-secondary"
+                    }`}
+                  >
+                    <BrandIcon name={badge.icon} className="h-[18px] w-[18px]" />
+                  </a>
+                ))}
             </div>
           </motion.div>
         </div>
