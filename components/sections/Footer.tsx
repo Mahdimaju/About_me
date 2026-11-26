@@ -17,7 +17,7 @@ export function Footer() {
     <footer className="relative mt-auto border-t border-white/[0.08] bg-void">
       <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12 py-8 flex flex-col md:flex-row items-center justify-between gap-5">
         <p className="text-center md:text-left font-mono text-xs text-ink-muted">
-          &copy; 2026 {profile.fullName} | Solar Eclipse Obsidian Portfolio
+          &copy; 2026 {profile.fullName} | Portfolio
           (Next.js 16 + Three.js)
         </p>
 
